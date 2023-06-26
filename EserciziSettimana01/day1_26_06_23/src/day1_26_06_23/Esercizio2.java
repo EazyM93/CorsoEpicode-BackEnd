@@ -1,7 +1,5 @@
 package day1_26_06_23;
 
-import java.util.Arrays;
-
 public class Esercizio2 {
 	public static void main(String[] args) {
 		
@@ -17,7 +15,9 @@ public class Esercizio2 {
 		String arrStr[] = {"Cane", "Gatto", "Topo", "Fungo", "Sugo"};
 		String stringaDue = "Artem";
 	
-		System.out.println(inserisciInArray(arrStr, stringaDue));
+		for (String x : inserisciInArray(arrStr, stringaDue)) {
+			System.out.println(x);
+		}
 		
 	}
 	
@@ -29,17 +29,22 @@ public class Esercizio2 {
 		return str + x;
 	}
 
-	public static String inserisciInArray(String[] arr, String str) {
+	public static String[] inserisciInArray(String[] arr, String str) {
 
 		String newArr[] = new String[6];
 
-		newArr[0] = arr[0];
-		newArr[1] = arr[1];
-		newArr[2] = arr[2];
-		newArr[3] = str;
-		newArr[4] = arr[3];
-		newArr[5] = arr[4];
+		for (int i = 0; i <= arr.length; i++) {
 
-		return Arrays.toString(newArr);
+			if (i == 2) {
+				newArr[i] = str;
+			} else if (i < 2) {
+				newArr[i] = arr[i];
+			} else {
+				newArr[i] = arr[i - 1];
+			}
+
+		}
+
+		return newArr;
 	}
 }
