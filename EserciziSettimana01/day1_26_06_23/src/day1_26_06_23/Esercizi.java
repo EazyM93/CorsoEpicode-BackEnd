@@ -103,8 +103,7 @@ public class Esercizi {
 	
 	public static double areaTriangolo(double l1, double l2, double l3) {
 		double p = l1 + l2 + l3;
-		double a = Math.sqrt(p * (p * l1) * (p * l2) * (p * l3));
-		return a;
+		return Math.sqrt(p * (p * l1) * (p * l2) * (p * l3));
 	}
 	
 
