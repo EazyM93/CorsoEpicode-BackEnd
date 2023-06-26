@@ -46,7 +46,7 @@ public class Esercizio4 {
 	}
 
 	public static double areaTriangolo(double l1, double l2, double l3) {
-		double p = l1 + l2 + l3;
+		double p = (l1 + l2 + l3) / 2;
 		return Math.sqrt(p * (p * l1) * (p * l2) * (p * l3));
 	}
 
