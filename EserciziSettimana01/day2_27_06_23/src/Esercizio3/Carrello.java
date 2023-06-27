@@ -1,8 +1,10 @@
 package Esercizio3;
 
+import java.util.ArrayList;
+
 public class Carrello {
 
-	Articolo prodotti[] = new Articolo[0];
+	ArrayList<Articolo> prodotti = new ArrayList<Articolo>();
 	Cliente currentClient;
 	double totale = 0;
 	
@@ -13,12 +15,7 @@ public class Carrello {
 	
 	// metodo che aggiunge articolo all'array degli articoli
 	public void addArticolo(Articolo art) {
-		Articolo newArr[] = new Articolo[prodotti.length + 1];
-		for(int i = 0; i < prodotti.length; i++) {
-			newArr[i] = prodotti[i];
-		}
-		newArr[newArr.length - 1] = art;
-		prodotti = newArr;
+		prodotti.add(art);
 	}
 	
 	// metodo che mostra il carrello e il costo totale
@@ -29,10 +26,10 @@ public class Carrello {
 		
 		// ciclo i prodotti del carrello e li stampo
 		System.out.println("ELENCO PRODOTTI");
-		for(Articolo prod: prodotti){
+		prodotti.forEach(prod -> {
 			System.out.printf("- %s \n", prod.descrizioneArticolo);
 			this.totale += prod.prezzoArticolo;
-		};
+		});
 		
 		// stampo il costo totale
 		System.out.println();
