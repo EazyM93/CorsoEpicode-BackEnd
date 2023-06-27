@@ -16,6 +16,8 @@ public class Esercizio2 {
 		sim1.aggiungiChiamata("3347850", 20);
 		sim1.aggiungiChiamata("3237882", 20);
 		sim1.aggiungiChiamata("3334737", 20);
+		sim1.aggiungiChiamata("3243247", 20);
+		sim1.aggiungiChiamata("3252545", 20);
 		
 		// stampa i dati della sim
 		sim1.stampaDati();

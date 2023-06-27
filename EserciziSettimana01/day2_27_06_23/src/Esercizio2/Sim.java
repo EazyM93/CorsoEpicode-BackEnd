@@ -5,7 +5,7 @@ public class Sim {
 	private String numero;
 	private double credito = 0;
 	// essendo array di oggetti ogni elemento sarà di default null
-	private Chiamata chiamate[] = new Chiamata[5]; 
+	private Chiamata chiamate[] = new Chiamata[5];
 	
 	Sim(String _numero) {
 		this.numero = _numero;
@@ -22,7 +22,6 @@ public class Sim {
 			if(call != null) {
 				System.out.println("- " + call.num + " / durata: " + call.durata + " minuti");
 			}
-			
 		}
 	}
 	
@@ -30,13 +29,12 @@ public class Sim {
 		
 		// ciclo gli elemnti dell' array e inserisce la chiamata nel primo elemento null che trova
 		// una volta effettuato l'inserimento, con il break esce dal ciclo
-		for(int i = 0; i < chiamate.length; i++) {
-			if(chiamate[i] == null) {
-				chiamate[i] = new Chiamata(num, durata);
-				break;
-			}
-			
+		for(int i = this.chiamate.length - 1; i > 0; i--) {
+			chiamate[i] = chiamate[i - 1];
 		}
+		
+		chiamate[0] = new Chiamata(num, durata);
+		
 	}
 	
 	public void ricarica(double ricarica) {
