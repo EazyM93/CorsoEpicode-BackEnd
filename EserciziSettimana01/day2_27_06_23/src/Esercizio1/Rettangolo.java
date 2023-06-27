@@ -14,11 +14,11 @@ public class Rettangolo {
 		this.a = area(_lato1, _lato2);
 	}
 	
-	public double perimetro(double l1,double l2) {
+	private double perimetro(double l1,double l2) {
 		return (l1 + l2) * 2;
 	}
 	
-	public double area(double l1,double l2) {
+	private double area(double l1,double l2) {
 		return l1 * l2;
 	}
 	
