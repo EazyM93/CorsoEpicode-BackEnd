@@ -11,6 +11,8 @@ public class esercizio4_main {
 		System.out.print("Inserire il numero intero per il conto alla rovescia: ");
 		int num = Integer.parseInt(scanner.nextLine());
 		
+		System.out.println();
+		
 		for(int i = num; i >= 0; i--) {
 			System.out.println(i);
 		}
