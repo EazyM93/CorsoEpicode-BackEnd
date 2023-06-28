@@ -7,7 +7,6 @@ public class esercizio3_main {
 	public static void main(String[] args) {
 		
 		String inputStr;
-		String flag = ":q";
 		
 		Scanner scanner = new Scanner(System.in);
 		
@@ -15,11 +14,12 @@ public class esercizio3_main {
 			
 			System.out.println("Inserire la stringa (:q - esci dal ciclo)");
 			inputStr = scanner.nextLine();
-			if(!inputStr.equals(flag)) {
+			if(!inputStr.equals(":q")) {
 				System.out.println(String.join(",", inputStr.split(""))); 
 			}
+			System.out.println();
 			
-		}while(!inputStr.equals(flag));
+		}while(!inputStr.equals(":q"));
 		
 		scanner.close();
 		
