@@ -21,7 +21,8 @@ public class Dipendente {
 	Dipendente(String _matricola, Livello _livello, Dipartimento _dipartimento){
 		this.matricola = _matricola;
 		this.dipartimento = _dipartimento;
-		this.stipendio = generaStipendio(_livello);
+		this.stipendio = (generaStipendio(_livello))[0];
+		this.importoOrarioStraordinario = (generaStipendio(_livello))[1];
 		this.livello = _livello;
 	};
 	
@@ -55,38 +56,39 @@ public class Dipendente {
 		return getStipendioBase() * aumento;
 	}
 	
-	public void setImportoOrarioStraordinario(double nuovoImporto) {
-		this.importoOrarioStraordinario = nuovoImporto;
+	public double setImportoOrarioStraordinario(double nuovoImporto) {
+		return nuovoImporto;
 	}
 	
 	// METODI ------------------------------------------------
 	
 	// CALCOLA STIPENDIO IN BASE AL LIVELLO 
-	private double generaStipendio(Livello liv) {
+	private double[] generaStipendio(Livello liv) {
 		
-		double stipendio = 0;
+		double valoriGenerati[] = new double[2];
 		
 		switch(liv) {
 			case OPERAIO:
-				stipendio = this.getStipendioBase();
+				valoriGenerati[0] = this.getStipendioBase();
+				valoriGenerati[1] = this.getImportoOrarioStraordinario();
 				break;
 			case IMPIEGATO:
-				stipendio = setStipendio(1.2);
-				setImportoOrarioStraordinario(40);
+				valoriGenerati[0] = setStipendio(1.2);
+				valoriGenerati[1] = setImportoOrarioStraordinario(40);
 				break;
 			case QUADRO:
-				stipendio = setStipendio(1.5);
-				setImportoOrarioStraordinario(50);
+				valoriGenerati[0] = setStipendio(1.5);
+				valoriGenerati[1] = setImportoOrarioStraordinario(50);
 				break;
 			case DIRIGENTE:
-				stipendio = setStipendio(2);
-				setImportoOrarioStraordinario(100);
+				valoriGenerati[0] = setStipendio(2);
+				valoriGenerati[1] = setImportoOrarioStraordinario(100);
 				break;
 			default:
 				System.out.println("Qualcosa è andato storto! Errore di sistema");
 		}
 		
-		return stipendio;
+		return valoriGenerati;
 	}
 	
 	// STAMPA DATI
@@ -104,19 +106,19 @@ public class Dipendente {
 		switch(this.getLivello()) {
 			case OPERAIO:
 				this.livello = Livello.IMPIEGATO;
-				stipendio = setStipendio(1.2);
+				this.stipendio = setStipendio(1.2);
 				setImportoOrarioStraordinario(40);
 				System.out.println("Il dipendente con matricola " + getMatricola() + " è stato promosso a: " + getLivello());
 				break;
 			case IMPIEGATO:
 				this.livello = Livello.QUADRO;
-				stipendio = setStipendio(1.5);
+				this.stipendio = setStipendio(1.5);
 				setImportoOrarioStraordinario(50);
 				System.out.println("Il dipendente con matricola " + getMatricola() + " è stato promosso a: " + getLivello());
 				break;
 			case QUADRO:
 				this.livello = Livello.DIRIGENTE;
-				stipendio = setStipendio(2);
+				this.stipendio = setStipendio(2);
 				setImportoOrarioStraordinario(100);
 				System.out.println("Il dipendente con matricola " + getMatricola() + " è stato promosso a: " + getLivello());
 				break;
