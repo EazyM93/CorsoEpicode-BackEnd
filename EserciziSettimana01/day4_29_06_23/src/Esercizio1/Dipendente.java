@@ -21,8 +21,8 @@ public class Dipendente {
 	Dipendente(String _matricola, Livello _livello, Dipartimento _dipartimento){
 		this.matricola = _matricola;
 		this.dipartimento = _dipartimento;
-		this.stipendio = (generaStipendio(_livello))[0];
-		this.importoOrarioStraordinario = (generaStipendio(_livello))[1];
+		this.stipendio = (generaValori(_livello))[0];
+		this.importoOrarioStraordinario = (generaValori(_livello))[1];
 		this.livello = _livello;
 	};
 	
@@ -63,7 +63,7 @@ public class Dipendente {
 	// METODI ------------------------------------------------
 	
 	// CALCOLA STIPENDIO IN BASE AL LIVELLO 
-	private double[] generaStipendio(Livello liv) {
+	private double[] generaValori(Livello liv) {
 		
 		double valoriGenerati[] = new double[2];
 		
