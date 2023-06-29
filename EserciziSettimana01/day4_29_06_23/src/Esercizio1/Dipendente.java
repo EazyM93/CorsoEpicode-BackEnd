@@ -26,15 +26,15 @@ public class Dipendente {
 	};
 	
 	// GETTER ------------------------------------------------
-	private double getStipendioBase() {
+	public double getStipendioBase() {
 		return this.stipendioBase;
 	}
 	
-	private String getMatricola() {
+	public String getMatricola() {
 		return this.matricola;
 	}
 	
-	private double getStipendio() {
+	public double getStipendio() {
 		return this.stipendio;
 	}
 	
@@ -42,7 +42,7 @@ public class Dipendente {
 		return this.importoOrarioStraordinario;
 	}
 	
-	private Livello getLivello() {
+	public Livello getLivello() {
 		return this.livello;
 	}
 	
@@ -52,7 +52,7 @@ public class Dipendente {
 	
 	// SETTERS ------------------------------------------------
 	public double setStipendio(double aumento) {
-		return this.getStipendioBase() * aumento;
+		return getStipendioBase() * aumento;
 	}
 	
 	public void setImportoOrarioStraordinario(double nuovoImporto) {
@@ -104,24 +104,24 @@ public class Dipendente {
 		switch(this.getLivello()) {
 			case OPERAIO:
 				this.livello = Livello.IMPIEGATO;
-				this.stipendio = this.stipendioBase * 1.2;
-				this.importoOrarioStraordinario = 40;
-				System.out.println("Il dipendente con matricola " + this.matricola + " è stato promosso a: " + this.livello);
+				stipendio = setStipendio(1.2);
+				setImportoOrarioStraordinario(40);
+				System.out.println("Il dipendente con matricola " + getMatricola() + " è stato promosso a: " + getLivello());
 				break;
 			case IMPIEGATO:
 				this.livello = Livello.QUADRO;
-				this.stipendio = this.stipendioBase * 1.5;
-				this.importoOrarioStraordinario = 50;
-				System.out.println("Il dipendente con matricola " + this.matricola + " è stato promosso a: " + this.livello);
+				stipendio = setStipendio(1.5);
+				setImportoOrarioStraordinario(50);
+				System.out.println("Il dipendente con matricola " + getMatricola() + " è stato promosso a: " + getLivello());
 				break;
 			case QUADRO:
 				this.livello = Livello.DIRIGENTE;
-				this.stipendio = this.stipendioBase * 2;
-				this.importoOrarioStraordinario = 100;
-				System.out.println("Il dipendente con matricola " + this.matricola + " è stato promosso a: " + this.livello);
+				stipendio = setStipendio(2);
+				setImportoOrarioStraordinario(100);
+				System.out.println("Il dipendente con matricola " + getMatricola() + " è stato promosso a: " + getLivello());
 				break;
 			case DIRIGENTE:
-				System.out.println("Il dipendente con matricola " + this.matricola + " è già in cima alla catena alimentare!");
+				System.out.println("Il dipendente con matricola " + getMatricola() + " è già in cima alla catena alimentare!");
 				break;
 			default:
 				System.out.println("Qualcosa è andato storto! Errore di sistema");
@@ -131,12 +131,12 @@ public class Dipendente {
 	}
 	
 	// CALCOLO PAGA
-	public static double calcoloPaga(Dipendente dip) {
-		return dip.getStipendio();
+	public static void calcoloPaga(Dipendente dip) {
+		System.out.println("Lo stipendio del mese corrente è della matricola " + dip.getMatricola() + " è: " + dip.getStipendio());
 	}
 	
-	public static double calcoloPaga(Dipendente dip, int oreStraordinario) {
-		return dip.getStipendio() + (dip.getImportoOrarioStraordinario() * oreStraordinario);
+	public static void calcoloPaga(Dipendente dip, int oreStraordinario) {
+		System.out.println("Lo stipendio del mese corrente è della matricola " + dip.getMatricola() + " è: " + (dip.getStipendio() + (dip.getImportoOrarioStraordinario() * oreStraordinario)));
 	}
 	
 }
