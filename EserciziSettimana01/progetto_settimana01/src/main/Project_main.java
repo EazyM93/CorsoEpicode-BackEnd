@@ -1,5 +1,6 @@
 package main;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import entities.*;
@@ -12,11 +13,12 @@ public class Project_main {
 		Multimedia elements[] = new Multimedia[5];
 		
 		renderPlayerTitle(playerTitle);
+		System.out.println("Inserire 5 elementi \n");
 		
 		Scanner scanner = new Scanner(System.in);
 		
 		for(int i = 0; i < elements.length; i++) {
-			System.out.println("Inserire 5 elementi \n");
+			
 			System.out.println("Seleziona tipo elemento " + (i + 1));
 			System.out.println("1 - Immagine");
 			System.out.println("2 - Audio");
@@ -46,7 +48,30 @@ public class Project_main {
 					System.out.println("Numero inserito non valido");
 					break;
 			}
+			System.out.println("");
 		}
+		
+		int x = 0;
+		
+		do {
+			System.out.println("Seleziona elemento\n");
+			for(int i = 0; i < elements.length; i++) System.out.println(i + " - " + elements[i].getTitle());
+			System.out.println("0 - USCIRE DAL PROGRAMMA");
+			x = Integer.parseInt(scanner.nextLine());
+			Multimedia obj = elements[x -1];
+			if((obj instanceof Image)) {
+				System.out.println("Cosa vuoi fare?");
+				System.out.println("1 - Visualizza immagine");
+				System.out.println("2 - Aumenta luminosità");
+				System.out.println("3 - Diminuisci luminosità");
+				System.out.println("0 - Torna indietro");
+			}else if((obj instanceof Audio)) {
+				
+			}else{
+				
+			}
+			
+		}while(x != 0);
 	}
 	
 	public static void renderPlayerTitle(String playerTitle) {
