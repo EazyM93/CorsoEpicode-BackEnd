@@ -1,6 +1,5 @@
 package main;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 import entities.*;
@@ -60,18 +59,19 @@ public class Project_main {
 			x = Integer.parseInt(scanner.nextLine());
 			Multimedia obj = elements[x -1];
 			if((obj instanceof Image)) {
-				System.out.println("Cosa vuoi fare?");
-				System.out.println("1 - Visualizza immagine");
-				System.out.println("2 - Aumenta luminosità");
-				System.out.println("3 - Diminuisci luminosità");
-				System.out.println("0 - Torna indietro");
+				Image img = (Image) obj;
+				img.show();
 			}else if((obj instanceof Audio)) {
-				
+				Audio audio = (Audio) obj;
+				audio.play();
 			}else{
-				
+				Video video = (Video) obj;
+				video.play();
 			}
 			
 		}while(x != 0);
+		
+		scanner.close();
 	}
 	
 	public static void renderPlayerTitle(String playerTitle) {
