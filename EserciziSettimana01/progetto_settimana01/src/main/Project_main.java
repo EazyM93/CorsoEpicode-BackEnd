@@ -16,7 +16,9 @@ public class Project_main {
 		
 		Scanner scanner = new Scanner(System.in);
 		
-		for(int i = 0; i < elements.length; i++) {
+		int i = 0;
+		
+		while(i < elements.length) {
 			
 			System.out.println("Seleziona tipo elemento " + (i + 1));
 			System.out.println("1 - Immagine");
@@ -28,6 +30,7 @@ public class Project_main {
 					System.out.print("Inserire titolo dell'immagine: ");
 					String imgTitle = scanner.nextLine();
 					elements[i] = new Image(imgTitle);
+					i++;
 					break;
 				case 2:
 					System.out.print("Inserire titolo dell'audio: ");
@@ -35,6 +38,7 @@ public class Project_main {
 					System.out.print("Inserire durata dell'audio: ");
 					int audioTime = Integer.parseInt(scanner.nextLine());
 					elements[i] = new Audio(audioTitle, audioTime);
+					i++;
 					break;
 				case 3:
 					System.out.print("Inserire titolo dell'audio: ");
@@ -42,22 +46,29 @@ public class Project_main {
 					System.out.print("Inserire durata dell'audio: ");
 					int videoTime = Integer.parseInt(scanner.nextLine());
 					elements[i] = new Audio(videoTitle, videoTime);
+					i++;
 					break;
 				default:
-					System.out.println("Numero inserito non valido");
+					System.err.println("Numero inserito non valido!");
 					break;
 			}
 			System.out.println("");
+			
 		}
-		
+				
 		int x = 0;
 		
 		do {
 			System.out.println("Seleziona elemento\n");
-			for(int i = 0; i < elements.length; i++) System.out.println(i + " - " + elements[i].getTitle());
-			System.out.println("0 - USCIRE DAL PROGRAMMA");
+			for(int j = 0; j < elements.length; j++) System.out.println((j + 1) + " - " + elements[j].getTitle());
+			System.out.println();
+			System.out.println("0 - USCIRE DAL PROGRAMMA\n");
+			
 			x = Integer.parseInt(scanner.nextLine());
-			Multimedia obj = elements[x -1];
+			
+			if(x < 0 || x > elements.length) { System.err.println("Numero non valido"); continue; };
+			
+			Multimedia obj = elements[x - 1];
 			if((obj instanceof Image)) {
 				Image img = (Image) obj;
 				img.show();
@@ -69,9 +80,13 @@ public class Project_main {
 				video.play();
 			}
 			
+			System.out.println();
+			System.out.println();
+			
 		}while(x != 0);
 		
 		scanner.close();
+		System.out.println("PROGRAMMA CHIUSO CON SUCCESSO");
 	}
 	
 	public static void renderPlayerTitle(String playerTitle) {
