@@ -57,7 +57,7 @@ public class Rubrica {
 		String numero = scanner.nextLine();
 		
 		cont.forEach((key, value) -> {	
-			if(value == numero) System.out.println("Nome del numero " + value + " : " + key);
+			if(value.equals(numero)) System.out.println("Nome del numero " + value + " : " + key);
 		});		
 	}
 	

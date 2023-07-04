@@ -55,21 +55,12 @@ public class ListaOrdinata {
 	
 	public static void pariDispari(List<Integer> list, boolean x) {
 		
-		if(x) {
-			System.out.print("Numeri in posizione pari :");
-			int i = 0;
-			for(int valore: list) {
-				if((i + 1) % 2 == 0) System.out.print(" " + valore);
-				i++;
-			}
-		}else{
-			System.out.print("Numeri in posizione dispari :");
-			int i = 0;
-			for(int valore: list) {
-				if((i + 1) % 2 != 0) System.out.print(" " + valore);
-				i++;;
-			}
-			
+		System.out.print(x ? "Numeri in posizione pari :" : "Numeri in posizione dispari :");
+		
+		int i = 0;
+		for(int valore: list) {
+			if(x) {if((i + 1) % 2 == 0) System.out.print(" " + valore);i++;}
+			else {if((i + 1) % 2 != 0) System.out.print(" " + valore);i++;}
 		}
 		
 	}
