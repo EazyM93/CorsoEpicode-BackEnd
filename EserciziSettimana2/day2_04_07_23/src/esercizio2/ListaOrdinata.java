@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class listaOrdinata {
+public class ListaOrdinata {
 
 	public static void main(String[] args) {
 		
@@ -30,6 +30,8 @@ public class listaOrdinata {
 		System.out.println();
 		pariDispari(numbers, false);
 		
+		scanner.close();
+		
 	}
 
 	public static List<Integer> reSort(List<Integer> lista) {
@@ -49,12 +51,21 @@ public class listaOrdinata {
 		
 		if(x == true) {
 			System.out.print("Numeri pari :");
-			for(int valore: list) if(valore % 2 == 0) System.out.print(" " + valore);
+			int i = 0;
+			for(int valore: list) {
+				if(i % 2 == 0) System.out.print(" " + valore);
+				i++;
+			}
 		}
 		
 		if(x == false){
 			System.out.print("Numeri dispari :");
-			for(int valore: list) if(valore % 2 != 0) System.out.print(" " + valore);
+			int i = 0;
+			for(int valore: list) {
+				if(i % 2 != 0) System.out.print(" " + valore);
+				i++;;
+			}
+			
 		}
 		
 	}

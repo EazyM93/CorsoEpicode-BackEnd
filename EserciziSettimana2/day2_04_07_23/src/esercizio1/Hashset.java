@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-public class hashset {
+public class Hashset {
 
 	public static void main(String[] args) {
 		
