@@ -12,6 +12,8 @@ public class Rubrica {
 		HashMap<String, String> contatti = new HashMap<String, String>();
 		
 		aggiungi(contatti, scanner);
+		aggiungi(contatti, scanner);
+		aggiungi(contatti, scanner);
 		
 		System.out.println(contatti);
 		
@@ -71,7 +73,7 @@ public class Rubrica {
 	public static void stampaTutti(HashMap<String, String> cont) {
 		
 		System.out.println("ELENCO CONTATTI");
-		cont.forEach((key, value) -> System.out.printf("- %s : %s", key, value));
+		cont.forEach((key, value) -> System.out.printf("- %s : %s\n", key, value));
 		
 	}
 }

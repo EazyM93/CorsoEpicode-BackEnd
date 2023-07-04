@@ -15,7 +15,6 @@ public class Hashset {
 		Scanner scanner = new Scanner(System.in);
 		Set<String> parole = new HashSet<String>();
 		List<String> duplicati = new ArrayList<String>();
-//		Set<String> duplicati = new HashSet<String>();
  		
 		System.out.print("Numero di elementi da inserire: ");
 		int num = Integer.parseInt(scanner.nextLine());
@@ -31,9 +30,7 @@ public class Hashset {
 		
 		System.out.println();
 		System.out.print("Elementi duplicati:");
-		for(String duplicato: duplicati) System.out.printf(" " + duplicato);
-//		Iterator<String> iterator = duplicati.iterator();
-//		while(iterator.hasNext()) System.out.print((!iterator.hasNext()) ? (iterator.toString() + ",") : (iterator.toString()));
+		for(String duplicato: duplicati) System.out.printf(" " + duplicato); 
 		System.out.println();
 		System.out.println();
 		System.out.printf("Numero di parole distinte: %d\n", parole.size());

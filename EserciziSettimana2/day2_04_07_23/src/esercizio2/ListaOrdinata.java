@@ -11,15 +11,12 @@ public class ListaOrdinata {
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
-		List<Integer> numbers = new ArrayList<Integer>();
- 		
+				
 		System.out.print("Numero di elementi da generare: ");
 		int num = Integer.parseInt(scanner.nextLine());
-
-		for(int i = 0; i < num; i++) {
-			numbers.add((int)(Math.random() * 100));
-		}
 		
+		List<Integer> numbers = new ArrayList<Integer>(populate(num));
+				
 		Collections.sort(numbers);
 		
 		System.out.println(numbers);
@@ -32,6 +29,15 @@ public class ListaOrdinata {
 		
 		scanner.close();
 		
+	}
+	
+	public static List<Integer> populate(int n){
+		
+		List<Integer> temp = new ArrayList<Integer>();
+		
+		for(int i = 0; i < n; i++) temp.add((int)(Math.random() * 100));
+		
+		return temp;
 	}
 
 	public static List<Integer> reSort(List<Integer> lista) {
@@ -50,16 +56,14 @@ public class ListaOrdinata {
 	public static void pariDispari(List<Integer> list, boolean x) {
 		
 		if(x == true) {
-			System.out.print("Numeri pari :");
+			System.out.print("Numeri in posizione pari :");
 			int i = 0;
 			for(int valore: list) {
 				if(i % 2 == 0) System.out.print(" " + valore);
 				i++;
 			}
-		}
-		
-		if(x == false){
-			System.out.print("Numeri dispari :");
+		}else{
+			System.out.print("Numeri in posizione dispari :");
 			int i = 0;
 			for(int valore: list) {
 				if(i % 2 != 0) System.out.print(" " + valore);
