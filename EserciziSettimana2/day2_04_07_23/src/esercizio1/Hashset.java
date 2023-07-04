@@ -23,8 +23,7 @@ public class Hashset {
 			
 			System.out.printf("Inserisci elemento %d : ", (i + 1));
 			String parola = scanner.nextLine();
-			boolean x = parole.add(parola);
-			if(!x) duplicati.add(parola);
+			if(!parole.add(parola)) duplicati.add(parola);
 			
 		}
 		
