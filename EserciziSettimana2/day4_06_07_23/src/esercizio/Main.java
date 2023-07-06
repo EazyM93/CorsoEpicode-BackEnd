@@ -86,12 +86,11 @@ public class Main {
 		
 		orderStory.add(riccardoOrder);
 		
-		Predicate<Order> afterFeb = order -> order.getOrderDate().isAfter(LocalDate.of(2021, 2, 1));
-		Predicate<Order> beforeApr = order -> order.getOrderDate().isBefore(LocalDate.of(2021, 4, 1));
+		Predicate<Order> range = order -> order.getOrderDate().isAfter(LocalDate.of(2021, 2, 1)) && order.getOrderDate().isBefore(LocalDate.of(2021, 4, 1));
 		Predicate<Order> tier2 = order -> order.getCustomer().getTier() == 2;
 
 		List<Order> orderInRangeTier2 =  orderStory.stream()
-				.filter(afterFeb.and(beforeApr).and(tier2))
+				.filter(range.and(tier2))
 				.collect(Collectors.toList());
 		
 		System.out.println("Prodotti ordinati da clienti Tier2");
