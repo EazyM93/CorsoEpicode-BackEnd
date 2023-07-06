@@ -55,8 +55,6 @@ public class Main {
 				.filter(equalsBoys)
 				.collect(Collectors.toList());
 		
-//		boysProducts.stream().map();
-		
 		System.out.println("Prodotti da ragazzi scontati");
 		for(Product p: boysProducts) {
 			p.setPrice(p.getPrice() * 0.10);
