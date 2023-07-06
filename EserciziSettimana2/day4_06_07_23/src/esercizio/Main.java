@@ -20,7 +20,7 @@ public class Main {
 		storeProducts.add(new Product(0003L, "Giocattolo uno", "Baby", 20.00));
 		storeProducts.add(new Product(0004L, "Videogioco uno", "Boys", 59.90));
 		storeProducts.add(new Product(0005L, "Videogioco due", "Boys", 69.90));
-		storeProducts.add(new Product(0006L, "Videogioco due", "Boys", 19.90));
+		storeProducts.add(new Product(0006L, "Videogioco tre", "Boys", 19.90));
 		storeProducts.add(new Product(0006L, "Trucco uno", "Girls", 5.90));
 		
 		// exercise 1---------------------------------------------------------------------
@@ -57,7 +57,13 @@ public class Main {
 		
 //		boysProducts.stream().map();
 		
+		System.out.println("Prodotti da ragazzi scontati");
+		for(Product p: boysProducts) {
+			p.setPrice(p.getPrice() * 0.10);
+			System.out.printf("- %s scontato: %.2f €\n", p.getName(), p.getPrice());		
+		}
 		
+		System.out.println();
 		
 		// exercise 4--------------------------------------------------------------------
 		List<Order> orderStory = new ArrayList<Order>();
