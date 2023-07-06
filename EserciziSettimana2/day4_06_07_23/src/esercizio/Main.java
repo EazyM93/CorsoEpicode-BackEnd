@@ -21,7 +21,7 @@ public class Main {
 		storeProducts.add(new Product(0004L, "Videogioco uno", "Boys", 59.90));
 		storeProducts.add(new Product(0005L, "Videogioco due", "Boys", 69.90));
 		storeProducts.add(new Product(0006L, "Videogioco tre", "Boys", 19.90));
-		storeProducts.add(new Product(0006L, "Trucco uno", "Girls", 5.90));
+		storeProducts.add(new Product(0006L, "Film uno", "Girls", 5.90));
 		
 		// exercise 1---------------------------------------------------------------------
 		Predicate<Product> equalsBook = product -> product.getCategory().equals("Books");
@@ -37,8 +37,10 @@ public class Main {
 		System.out.println();
 		
 		// exercise 2--------------------------------------------------------------------
+		List<Order> orderList = new ArrayList<Order>();
+				
 		Predicate<Product> equalsBaby = product -> product.getCategory().equals("Baby");
-		
+				
 		List<Product> babyProducts = storeProducts.stream()
 				.filter(equalsBaby)
 				.collect(Collectors.toList());
@@ -56,6 +58,9 @@ public class Main {
 				.collect(Collectors.toList());
 		
 		System.out.println("Prodotti da ragazzi scontati");
+		
+//		boysProducts.stream().map(p -> );
+		
 		for(Product p: boysProducts) {
 			p.setPrice(p.getPrice() * 0.10);
 			System.out.printf("- %s scontato: %.2f €\n", p.getName(), p.getPrice());		
@@ -73,7 +78,7 @@ public class Main {
 		
 		orderStory.add(manuelOrder);
 		
-		Order riccardoOrder = new Order(001L, new Customer(002L, "Riccardo", 1));
+		Order riccardoOrder = new Order(002L, new Customer(002L, "Riccardo", 1));
 		riccardoOrder.addProduct(storeProducts.get(1));
 		riccardoOrder.addProduct(storeProducts.get(5));
 		riccardoOrder.addProduct(storeProducts.get(6));
