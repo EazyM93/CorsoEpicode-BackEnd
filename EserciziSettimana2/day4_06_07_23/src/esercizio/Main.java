@@ -57,6 +57,8 @@ public class Main {
 		
 //		boysProducts.stream().map();
 		
+		
+		
 		// exercise 4--------------------------------------------------------------------
 		List<Order> orderStory = new ArrayList<Order>();
 		
@@ -67,7 +69,7 @@ public class Main {
 		
 		orderStory.add(manuelOrder);
 		
-		Order riccardoOrder = new Order(001L, new Customer(001L, "Manuel", 2));
+		Order riccardoOrder = new Order(001L, new Customer(002L, "Riccardo", 1));
 		riccardoOrder.addProduct(storeProducts.get(1));
 		riccardoOrder.addProduct(storeProducts.get(5));
 		riccardoOrder.addProduct(storeProducts.get(6));
@@ -77,9 +79,10 @@ public class Main {
 		
 		Predicate<Order> afterFeb = order -> order.getOrderDate().isAfter(LocalDate.of(2021, 2, 1));
 		Predicate<Order> beforeApr = order -> order.getOrderDate().isBefore(LocalDate.of(2021, 4, 1));
+		Predicate<Order> tier2 = order -> order.getCustomer().getTier() == 2;
 
 		List<Order> orderInRangeTier2 =  orderStory.stream()
-				.filter(afterFeb.and(beforeApr))
+				.filter(afterFeb.and(beforeApr).and(tier2))
 				.collect(Collectors.toList());
 		
 		System.out.println("Prodotti ordinati da clienti Tier2");
