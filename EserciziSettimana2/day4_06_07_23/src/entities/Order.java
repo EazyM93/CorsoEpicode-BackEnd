@@ -3,23 +3,25 @@ package entities;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 
 public class Order{
-
+	
+	//constructor attribute
 	private Long id;
-	private String status;
-	private LocalDate orderDate;
-	private LocalDate deliveryDate;
-	private List<Product> products = new ArrayList<Product>();
+	private String status = "Pending";
 	private Customer customer;
 	
-	Order(Long _id, String _status, LocalDate _orderDate, Product _prod, Customer _cust){
+	// order / delivery attributes
+	private LocalDate orderDate;
+	private LocalDate deliveryDate;
+	
+	// ordered products
+	private List<Product> products = new ArrayList<Product>();
+	
+	public Order(Long _id, Customer _cust){
 		this.id = _id;
-		this.status = _status;
-		this.orderDate = _orderDate;
-		this.deliveryDate = _orderDate.plusDays(2);
 		this.customer = _cust;
-		products.add(_prod);
 	}	
 	
 	// getters
@@ -46,4 +48,21 @@ public class Order{
 	public Customer getCustomer() {
 		return this.customer;
 	}
+	
+	// setter
+	public void setStatus(String s) {
+		this.status = s;
+	}
+	
+	public void setOrderData(LocalDate d) {
+		this.orderDate = d;
+		this.setStatus("Delivered");
+		this.deliveryDate = d.plusDays(2);
+	}
+	
+	// methods
+	public void addProduct(Product p) {
+		products.add(p);
+	}
+	
 }
