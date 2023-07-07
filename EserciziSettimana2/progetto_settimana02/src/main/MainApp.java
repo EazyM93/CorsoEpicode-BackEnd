@@ -32,28 +32,31 @@ public class MainApp {
 		
 		System.out.println();
 		
-		// removing some element
-		removeElement(archive, 6285858885667L);
-		removeElement(archive, 3253245355352L);
-		
-		System.out.println();
-		
-		// isbn search
-		System.out.println(3640284545632L);
-		
-		System.out.println();
-		
-		// year search
-		yearSearch(archive, 1954);
-		
-		System.out.println();
-		
-		// author search
-		authorSearch(archive, "J.R.R. Tolkien");
-		
 		// save file
 		try {
 			writeFile(archive, localFile);
+			archive.clear();
+			archive = loadFile(localFile);
+			
+			// removing some element
+			removeElement(archive, 6285858885667L);
+			removeElement(archive, 3253245355352L);
+			
+			System.out.println();
+			
+			// isbn search
+			System.out.println(3640284545632L);
+			
+			System.out.println();
+			
+			// year search
+			yearSearch(archive, 1954);
+			
+			System.out.println();
+			
+			// author search
+			authorSearch(archive, "J.R.R. Tolkien");
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -121,7 +124,7 @@ public class MainApp {
 		
 		for(String str: splitFile) {
 			String[] e = str.split("!");
-			if(str.contains("Autore")) {
+			if(e.length == 6) {
 				set.add(new Book(
 					Long.parseLong(e[0]),
 					e[1],
@@ -131,9 +134,17 @@ public class MainApp {
 					Genre.valueOf(e[5])
 				));
 			}else {
-				
+				set.add(new Magazine(
+						Long.parseLong(e[0]),
+						e[1],
+						Integer.parseInt(e[2]),
+						Integer.parseInt(e[3]),
+						Frequency.valueOf(e[4])
+					));
 			}
 		}
+		System.out.println("Load effettuato!");
+		System.out.println();
 		
 		return set;
 	}
