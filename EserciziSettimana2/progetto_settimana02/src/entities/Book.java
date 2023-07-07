@@ -35,7 +35,7 @@ public class Book extends ReadableElement{
 	}
 	
 	public String toStringSave() {
-		return getIsbn() + "!" + getTitle() + "!" + getYear() + "!" + getPages() + "!" + getAuthor() + "!" + getGenres();
+		return "Book!" + getIsbn() + "!" + getTitle() + "!" + getYear() + "!" + getPages() + "!" + getAuthor() + "!" + getGenres();
 	}
 	
 }

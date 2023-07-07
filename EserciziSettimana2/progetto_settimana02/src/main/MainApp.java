@@ -44,17 +44,15 @@ public class MainApp {
 			System.out.println();
 			
 			// isbn search
-			System.out.println(3640284545632L);
-			
-			System.out.println();
-			
+			System.out.println(isbnSearch(archive, 3640284545632L).toString());
+				
 			// year search
-			yearSearch(archive, 1954);
+			for(ReadableElement e: yearSearch(archive, 1954)) System.out.printf("- %s\n", e.getTitle());
 			
 			System.out.println();
 			
 			// author search
-			authorSearch(archive, "J.R.R. Tolkien");
+			for(ReadableElement e: authorSearch(archive, "J.R.R. Tolkien")) System.out.printf("- %s\n", e.getTitle());
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -82,30 +80,33 @@ public class MainApp {
 	}
 	
 	// year search
-	public static void yearSearch(Set<ReadableElement> set, int year) {
+	public static List<ReadableElement> yearSearch(Set<ReadableElement> set, int year) {
 		List<ReadableElement> listYear = set.stream().filter(e -> e.getYear() == year).toList();
 		System.out.printf("Libri pubblicati nel %s\n", year);
-		for(ReadableElement e: listYear) System.out.printf("- %s\n", e.getTitle());
+		return listYear;
 	}
 	
 	// author search
-	public static void authorSearch(Set<ReadableElement> set, String author) {
+	public static List<ReadableElement> authorSearch(Set<ReadableElement> set, String author) {
 		List<ReadableElement> listAuthor = set.stream()
 				.filter(e -> (e instanceof Book) && ((Book)e).getAuthor().equals(author)).toList();
 		System.out.printf("Libri pubblicati da %s\n", author);
-		for(ReadableElement e: listAuthor) System.out.printf("- %s\n", e.getTitle());
+		return listAuthor;
 	}
 	
 	// save
 	public static void writeFile(Set<ReadableElement> set, String filePath) throws IOException {
 
 		String localString = "";
-
+		
+		// loop to check if every element is book or magazine
+		// then add his attributes to localString
 		for (ReadableElement e: set) {
 			if (e instanceof Book) localString += ((Book) e).toStringSave() + "#";
 			else if (e instanceof Magazine) localString += ((Magazine) e).toStringSave() + "#";
 		}
 
+		// write localString to file .txt
 		File file = new File(filePath);
 		FileUtils.writeStringToFile(file,localString, "UTF-8");
 	}
@@ -113,32 +114,41 @@ public class MainApp {
 	// load
 	public static Set<ReadableElement> loadFile(String filePath) throws IOException {
 		
+		// new temporary set
 		Set<ReadableElement> set = new HashSet<ReadableElement>();
 		
 		File file = new File(filePath);
 		
+		// reading data String from file .txt
 		String readFile = FileUtils.readFileToString(file, "UTF-8");
 		
+		// new list of string. Every string has all the attributes of a book/magazine
 		List<String> splitFile = Arrays.asList(readFile.split("#"));
 		
 		for(String str: splitFile) {
+			
+			// array of attributes
 			String[] e = str.split("!");
-			if(e.length == 6) {
+			
+			//check for book or magazine
+			if(e[0].equals("Book")) {
+				// adding new book with attributes convert
 				set.add(new Book(
-					Long.parseLong(e[0]),
-					e[1],
-					Integer.parseInt(e[2]),
+					Long.parseLong(e[1]),
+					e[2],
 					Integer.parseInt(e[3]),
-					e[4],
-					Genre.valueOf(e[5])
+					Integer.parseInt(e[4]),
+					e[5],
+					Genre.valueOf(e[6])
 				));
 			}else {
+				// adding new magazine with attributes convert
 				set.add(new Magazine(
-						Long.parseLong(e[0]),
-						e[1],
-						Integer.parseInt(e[2]),
+						Long.parseLong(e[1]),
+						e[2],
 						Integer.parseInt(e[3]),
-						Frequency.valueOf(e[4])
+						Integer.parseInt(e[4]),
+						Frequency.valueOf(e[5])
 					));
 			}
 		}

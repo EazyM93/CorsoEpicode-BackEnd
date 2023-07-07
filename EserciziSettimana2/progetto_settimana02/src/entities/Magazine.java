@@ -25,6 +25,6 @@ public class Magazine extends ReadableElement{
 	}
 	
 	public String toStringSave() {
-		return getIsbn() + "!" + getTitle() + "!" + getYear() + "!" + getPages() + "!" + getFrequency();
+		return "Magazine!" + getIsbn() + "!" + getTitle() + "!" + getYear() + "!" + getPages() + "!" + getFrequency();
 	}
 }
