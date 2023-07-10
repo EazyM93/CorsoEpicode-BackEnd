@@ -15,13 +15,13 @@ WHERE data_nascita = 1982
 
 // Estrarre il numero delle fatture con iva 20%
 
-SELECT count(*) FROM public.fattura
+SELECT COUNT(*) FROM public.fattura
 WHERE iva = 20
 
 
 // Riportare il numero di fatture e la somma dei relativi importi divisi per anno di fatturazione
 
-SELECT count(*), data_fattura, SUM(importo)  FROM public.fattura
+SELECT COUNT(*), data_fattura, SUM(importo)  FROM public.fattura
 GROUP BY data_fattura
 ORDER BY data_fattura
 
@@ -31,3 +31,12 @@ ORDER BY data_fattura
 SELECT descrizione FROM public.prodotti
 WHERE data_attivazione = 2017 AND (in_produzione != 0 OR in_commercio !=0)
 
+
+// Considerando soltanto le fatture con iva al 20%, estrarre il numeri di fatture per ogni anno
+
+SELECT COUNT(*), data_fattura FROM public.fattura
+WHERE iva = 20
+GROUP BY data_fattura
+
+
+// Estrarre gli anni in cui sono state registrate più di 2 fatture con tipologia 
