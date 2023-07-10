@@ -24,3 +24,10 @@ WHERE iva = 20
 SELECT count(*), data_fattura, SUM(importo)  FROM public.fattura
 GROUP BY data_fattura
 ORDER BY data_fattura
+
+
+// Estrarre i prodotti attivati nel 2017 e che sono in produzione oppure in commercio
+
+SELECT descrizione FROM public.prodotti
+WHERE data_attivazione = 2017 AND (in_produzione != 0 OR in_commercio !=0)
+
