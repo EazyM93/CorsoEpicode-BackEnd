@@ -21,7 +21,7 @@ WHERE iva = 20
 
 // Riportare il numero di fatture e la somma dei relativi importi divisi per anno di fatturazione
 
-SELECT COUNT(*), data_fattura, SUM(importo)  FROM public.fattura
+SELECT COUNT(*) AS totale, data_fattura, SUM(importo)  FROM public.fattura
 GROUP BY data_fattura
 ORDER BY data_fattura
 
@@ -40,3 +40,4 @@ GROUP BY data_fattura
 
 
 // Estrarre gli anni in cui sono state registrate più di 2 fatture con tipologia 
+
