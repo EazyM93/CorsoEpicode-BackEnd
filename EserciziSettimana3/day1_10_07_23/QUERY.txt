@@ -1,8 +1,26 @@
 // GENERARE I DATI DENTRO LE TABELLE
 
+
 // clienti (lo stesso ripetuto per tutte le altre tabelle con i relativi dati)
 
 INSERT INTO public.clienti(numero_cliente, nome, cognome, data_nascita, regione_residenza)
 VALUES (1, 'Manuel', 'Centini', 1993, 'Lazio')
 
+
 // Estrarre il nome e il cognome dei clienti nati nel 1982
+
+SELECT nome, cognome FROM public.clienti
+WHERE data_nascita = 1982
+
+
+// Estrarre il numero delle fatture con iva 20%
+
+SELECT count(*) FROM public.fattura
+WHERE iva = 20
+
+
+// Riportare il numero di fatture e la somma dei relativi importi divisi per anno di fatturazione
+
+SELECT count(*), data_fattura, SUM(importo)  FROM public.fattura
+GROUP BY data_fattura
+ORDER BY data_fattura
