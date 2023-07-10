@@ -1,0 +1,8 @@
+// GENERARE I DATI DENTRO LE TABELLE
+
+// clienti (lo stesso ripetuto per tutte le altre tabelle con i relativi dati)
+
+INSERT INTO public.clienti(numero_cliente, nome, cognome, data_nascita, regione_residenza)
+VALUES (1, 'Manuel', 'Centini', 1993, 'Lazio')
+
+// Estrarre il nome e il cognome dei clienti nati nel 1982
