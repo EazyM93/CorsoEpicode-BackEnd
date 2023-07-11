@@ -20,7 +20,7 @@ public class EventoDAO {
 
 		t.commit();
 		
-		System.out.println("Studente salvato correttamente");
+		System.out.println("Evento salvato con successo");
 	}
 	
 	public Evento findById(UUID id) {
@@ -43,14 +43,16 @@ public class EventoDAO {
 			
 			t.commit();
 			
-			System.out.println("Studente eliminato correttamente");
+			System.out.println("Evento eliminato con successo");
 			
-		} else System.out.println("Studente non trovato");
+		} else System.out.println("Evento non trovato");
 	}
 	
 	public void refresh(UUID id) {
 		
 		Evento found = em.find(Evento.class, id);
+		
+		found.setTitolo("Dadegi");
 
 		System.out.println("PRE REFRESH");
 		System.out.println(found);
