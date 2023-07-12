@@ -38,9 +38,6 @@ public class GestioneEventi {
 		// delete
 		sv.findByIdAndDelete(lezione.getId());
 		System.out.println();
-		
-		// refresh
-		sv.refresh(meet.getId());
 
 		em.close();
 		emf.close();
