@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 
 import entities.Evento;
 import entities.EventoDAO;
+import entities.Location;
 import entities.TipoEvento;
 import util.JpaUtil;
 
@@ -19,11 +20,12 @@ public class GestioneEventi {
 		EventoDAO sv = new EventoDAO(em);
 		
 		// save
-		Evento meet = new Evento("Meet Up Epicode", "2023-07-14", "Meet tra epicoders.", TipoEvento.Pubblico, 100);
+		Location laghetto = new Location("Laghetto", "Roma");
+		Evento meet = new Evento("Meet Up Epicode", "2023-07-14", "Meet tra epicoders.", TipoEvento.Pubblico, 100, laghetto);
 		sv.save(meet);
 		System.out.println();
 		
-		Evento lezione = new Evento("Lezione Epicode", "2023-07-12", "Lezione di domani.", TipoEvento.Privato, 30);
+		Evento lezione = new Evento("Lezione Epicode", "2023-07-12", "Lezione di domani.", TipoEvento.Privato, 30, laghetto);
 		sv.save(lezione);
 		System.out.println();
 

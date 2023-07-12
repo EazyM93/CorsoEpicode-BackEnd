@@ -2,6 +2,7 @@ package entities;
 
 
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -11,8 +12,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "gestioneventi")
+@Getter
+@Setter
 public class Evento {
 
 	@Id
@@ -23,62 +29,25 @@ public class Evento {
 	private LocalDate dataEvento;
 	private String descrizione;
 	private int numeroMassimoPartecipanti;
+	private Set<Partecipazione> partecipazioni;
+	private Location location;
 	
 	@Enumerated(EnumType.STRING)
     private TipoEvento tipoEvento;
 	
 	public Evento() {}
 	
-	public Evento(String titolo, String dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti) {
+	public Evento(String titolo, String dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location) {
 		this.titolo = titolo;
 		this.dataEvento = LocalDate.parse(dataEvento);
 		this.descrizione = descrizione;
 		this.tipoEvento = tipoEvento;
 		this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
-	}
-
-	public UUID getId() {
-		return id;
-	}
-
-	public String getTitolo() {
-		return titolo;
-	}
-
-	public LocalDate getDataEvento() {
-		return dataEvento;
-	}
-
-	public String getDescrizione() {
-		return descrizione;
-	}
-
-	public TipoEvento getTipoEvento() {
-		return tipoEvento;
-	}
-
-	public int getNumeroMassimoPartecipanti() {
-		return numeroMassimoPartecipanti;
-	}
-
-	public void setTitolo(String titolo) {
-		this.titolo = titolo;
+		this.location = location;
 	}
 
 	public void setDataEvento(String dataEvento) {
 		this.dataEvento = LocalDate.parse(dataEvento);
-	}
-
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
-	}
-
-	public void setTipoEvento(TipoEvento tipoEvento) {
-		this.tipoEvento = tipoEvento;
-	}
-
-	public void setNumeroMassimoPartecipanti(int numeroMassimoPartecipanti) {
-		this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
 	}
 	
 	@Override
