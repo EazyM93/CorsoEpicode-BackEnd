@@ -6,6 +6,13 @@ import javax.persistence.EntityManagerFactory;
 import entities.Evento;
 import entities.EventoDAO;
 import entities.Location;
+import entities.LocationDAO;
+import entities.Partecipazione;
+import entities.PartecipazioneDAO;
+import entities.Persona;
+import entities.PersonaDAO;
+import entities.Sesso;
+import entities.Stato;
 import entities.TipoEvento;
 import util.JpaUtil;
 
@@ -17,26 +24,30 @@ public class GestioneEventi {
 		
 		EntityManager em = emf.createEntityManager();
 		
-		EventoDAO sv = new EventoDAO(em);
+		// dao variables
+		PersonaDAO pd = new PersonaDAO(em);
+		LocationDAO ld = new LocationDAO(em);
+		EventoDAO sd = new EventoDAO(em);
+		PartecipazioneDAO pard = new PartecipazioneDAO(em);
 		
-		// save
+		// person save
+		Persona manuel = new Persona("Manuel", "Centini", "manuel@gmail.com", "1993-10-19", Sesso.Maschio);
+		pd.save(manuel);
+		System.out.println();
+		
+		// location save
 		Location laghetto = new Location("Laghetto", "Roma");
+		ld.save(laghetto);
+		System.out.println();
+		
+		// event save
 		Evento meet = new Evento("Meet Up Epicode", "2023-07-14", "Meet tra epicoders.", TipoEvento.Pubblico, 100, laghetto);
-		sv.save(meet);
+		sd.save(meet);
 		System.out.println();
 		
-		Evento lezione = new Evento("Lezione Epicode", "2023-07-12", "Lezione di domani.", TipoEvento.Privato, 30, laghetto);
-		sv.save(lezione);
-		System.out.println();
-
-		// find by id
-		System.out.println(sv.findById(meet.getId()));
-		System.out.println();
-		System.out.println(sv.findById(lezione.getId()));
-		System.out.println();
-		
-		// delete
-		sv.findByIdAndDelete(lezione.getId());
+		// partecipazione save
+		Partecipazione prima = new Partecipazione(manuel, meet, Stato.Confermato);
+		pard.save(prima);
 		System.out.println();
 
 		em.close();

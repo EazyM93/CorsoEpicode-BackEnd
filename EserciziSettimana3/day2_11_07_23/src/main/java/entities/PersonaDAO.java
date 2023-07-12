@@ -11,28 +11,28 @@ public class PersonaDAO {
 
 	public PersonaDAO(EntityManager em) {this.em = em;}
 	
-	public void save(Evento e) {
+	public void save(Persona persona) {
 		EntityTransaction t = em.getTransaction();
 
 		t.begin(); 
 
-		em.persist(e);		
+		em.persist(persona);		
 
 		t.commit();
 		
 		System.out.println("Persona salvata con successo");
 	}
 	
-	public Evento findById(UUID id) {
+	public Persona findById(UUID id) {
 		
-		Evento found = em.find(Evento.class, id);
+		Persona found = em.find(Persona.class, id);
 		
 		return found;
 	}
 	
 	public void findByIdAndDelete(UUID id) {
 		
-		Evento found = em.find(Evento.class, id);
+		Persona found = em.find(Persona.class, id);
 		if (found != null) {
 			
 			EntityTransaction t = em.getTransaction();
@@ -50,9 +50,9 @@ public class PersonaDAO {
 	
 	public void refresh(UUID id) {
 		
-		Evento found = em.find(Evento.class, id);
+		Persona found = em.find(Persona.class, id);
 		
-		found.setTitolo("Dadegi");
+		found.setNome("Dadegi");
 
 		System.out.println("PRE REFRESH");
 		System.out.println(found);

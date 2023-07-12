@@ -11,28 +11,28 @@ public class LocationDAO {
 
 	public LocationDAO(EntityManager em) {this.em = em;}
 	
-	public void save(Evento e) {
+	public void save(Location location) {
 		EntityTransaction t = em.getTransaction();
 
 		t.begin(); 
 
-		em.persist(e);		
+		em.persist(location);		
 
 		t.commit();
 		
 		System.out.println("Location salvata con successo");
 	}
 	
-	public Evento findById(UUID id) {
+	public Location findById(UUID id) {
 		
-		Evento found = em.find(Evento.class, id);
+		Location found = em.find(Location.class, id);
 		
 		return found;
 	}
 	
 	public void findByIdAndDelete(UUID id) {
 		
-		Evento found = em.find(Evento.class, id);
+		Location found = em.find(Location.class, id);
 		if (found != null) {
 			
 			EntityTransaction t = em.getTransaction();
@@ -50,9 +50,9 @@ public class LocationDAO {
 	
 	public void refresh(UUID id) {
 		
-		Evento found = em.find(Evento.class, id);
+		Location found = em.find(Location.class, id);
 		
-		found.setTitolo("Dadegi");
+		found.setNome("Dadegi");
 
 		System.out.println("PRE REFRESH");
 		System.out.println(found);

@@ -3,8 +3,11 @@ package entities;
 import java.util.UUID;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -22,8 +25,13 @@ public class Partecipazione {
 	@GeneratedValue
 	private UUID id;
 	
+	@ManyToOne
 	private Persona persona;
+
+	@ManyToOne
 	private Evento evento;
+	
+	@Enumerated(EnumType.STRING)
 	private Stato stato;
 	
 	public Partecipazione(Persona persona, Evento evento, Stato stato) {
