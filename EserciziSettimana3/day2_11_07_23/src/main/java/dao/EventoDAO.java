@@ -1,11 +1,15 @@
 package dao;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
+import entities.Concerto;
 import entities.Evento;
+import entities.Genere;
 
 public class EventoDAO {
 
@@ -64,6 +68,20 @@ public class EventoDAO {
 		System.out.println("POST REFRESH");
 		System.out.println(found);
 
+	}
+	
+	public List<Concerto> getConcertiInStreaming(boolean b) {
+		TypedQuery<Concerto> getAllQuery = 
+				em.createQuery("SELECT co FROM Concerto co WHERE inStreaming = true",
+						Concerto.class);
+		return getAllQuery.getResultList();
+	}
+	
+	public List<Concerto> getConcertiPerGenere(Genere genere) {
+		TypedQuery<Concerto> getAllQuery = 
+				em.createQuery("SELECT co FROM Concerto co WHERE genere = :genere",
+						Concerto.class);
+		return getAllQuery.getResultList();
 	}
 	
 }

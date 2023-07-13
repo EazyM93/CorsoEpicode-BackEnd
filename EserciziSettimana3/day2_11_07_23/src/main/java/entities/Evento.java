@@ -26,7 +26,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Evento {
 
 	@Id
