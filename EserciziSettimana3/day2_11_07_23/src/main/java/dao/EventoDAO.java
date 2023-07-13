@@ -1,9 +1,11 @@
-package entities;
+package dao;
 
 import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+
+import entities.Evento;
 
 public class EventoDAO {
 

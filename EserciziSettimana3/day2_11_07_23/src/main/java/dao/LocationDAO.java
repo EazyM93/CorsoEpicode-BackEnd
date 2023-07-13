@@ -1,38 +1,40 @@
-package entities;
+package dao;
 
 import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-public class PartecipazioneDAO {
+import entities.Location;
+
+public class LocationDAO {
 
 	private final EntityManager em;
 
-	public PartecipazioneDAO(EntityManager em) {this.em = em;}
+	public LocationDAO(EntityManager em) {this.em = em;}
 	
-	public void save(Partecipazione partecipazione) {
+	public void save(Location location) {
 		EntityTransaction t = em.getTransaction();
 
 		t.begin(); 
 
-		em.persist(partecipazione);		
+		em.persist(location);		
 
 		t.commit();
 		
-		System.out.println("Partecipazione salvata con successo");
+		System.out.println("Location salvata con successo");
 	}
 	
-	public Partecipazione findById(UUID id) {
+	public Location findById(UUID id) {
 		
-		Partecipazione found = em.find(Partecipazione.class, id);
+		Location found = em.find(Location.class, id);
 		
 		return found;
 	}
 	
 	public void findByIdAndDelete(UUID id) {
 		
-		Partecipazione found = em.find(Partecipazione.class, id);
+		Location found = em.find(Location.class, id);
 		if (found != null) {
 			
 			EntityTransaction t = em.getTransaction();
@@ -43,14 +45,16 @@ public class PartecipazioneDAO {
 			
 			t.commit();
 			
-			System.out.println("Partecipazione eliminata con successo");
+			System.out.println("Location eliminata con successo");
 			
-		} else System.out.println("Partecipazione non trovata");
+		} else System.out.println("Location non trovata");
 	}
 	
 	public void refresh(UUID id) {
 		
-		Partecipazione found = em.find(Partecipazione.class, id);
+		Location found = em.find(Location.class, id);
+		
+		found.setNome("Dadegi");
 
 		System.out.println("PRE REFRESH");
 		System.out.println(found);

@@ -3,14 +3,14 @@ package app;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import dao.EventoDAO;
+import dao.LocationDAO;
+import dao.PartecipazioneDAO;
+import dao.PersonaDAO;
 import entities.Evento;
-import entities.EventoDAO;
 import entities.Location;
-import entities.LocationDAO;
 import entities.Partecipazione;
-import entities.PartecipazioneDAO;
 import entities.Persona;
-import entities.PersonaDAO;
 import entities.Sesso;
 import entities.Stato;
 import entities.TipoEvento;
