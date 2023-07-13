@@ -11,17 +11,22 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.InheritanceType;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "gestioneventi")
 @Getter
 @Setter
+@NoArgsConstructor
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Evento {
 
 	@Id
@@ -41,8 +46,6 @@ public class Evento {
 	
 	@Enumerated(EnumType.STRING)
     private TipoEvento tipoEvento;
-	
-	public Evento() {}
 	
 	public Evento(String titolo, String dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti, Location location) {
 		this.titolo = titolo;
