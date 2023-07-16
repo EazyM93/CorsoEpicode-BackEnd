@@ -110,7 +110,7 @@ public class CatalogoDAO {
 	}
 	
 	public List<Prestito> findElapsed() {
-		TypedQuery<Prestito> query = em.createQuery("SELECT p FROM Prestito p WHERE p.dataRestituzionePrevista < CURRENT_DATE AND p.dataRestituzioneEffettiva IS NULL",	Prestito.class);
+		TypedQuery<Prestito> query = em.createQuery("SELECT p FROM Prestito p WHERE p.dataRestituzioneEffettiva IS NULL",	Prestito.class);
 		
 		return query.getResultList();
 	}

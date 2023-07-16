@@ -69,11 +69,15 @@ public class Catalogo {
 		System.out.println();
 		
 		// search by title
-		System.err.println(cat.findTitle("Io Robot"));
+		System.out.println(cat.findTitle("Io Robot"));
 		System.out.println();
 		
 		// salvataggio prestito
 		Prestito prestitoOne = new Prestito(userOne, bookOne, LocalDate.of(2023, 06, 20), LocalDate.of(2023, 07, 15), LocalDate.of(2023, 07, 15));
+		cat.salvataggioPrestito(prestitoOne);
+		Prestito prestitoODue = new Prestito(userTwo, bookTwo, LocalDate.of(2023, 06, 25), LocalDate.of(2023, 07, 15), null);
+		cat.salvataggioPrestito(prestitoODue);
+		System.out.println();
 		
 		// ricerca prestiti per scheda utente
 		System.out.println("Letture in prestito all'utente selezionato");
