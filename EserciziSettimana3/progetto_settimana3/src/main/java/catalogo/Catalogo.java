@@ -12,6 +12,7 @@ import entities.Genere;
 import entities.Lettura;
 import entities.Libro;
 import entities.Periodicità;
+import entities.Prestito;
 import entities.Rivista;
 import entities.Utente;
 import jpautil.JpaUtil;
@@ -55,6 +56,7 @@ public class Catalogo {
 		// delete by isbn
 		cat.findByIdAndDelete(9999569041253L);
 		cat.findByIdAndDelete(1567969041253L);
+		System.out.println();
 		
 		// search by year
 		System.out.println("Letture anno selezionato");
@@ -69,6 +71,20 @@ public class Catalogo {
 		// search by title
 		System.err.println(cat.findTitle("Io Robot"));
 		System.out.println();
+		
+		// salvataggio prestito
+		Prestito prestitoOne = new Prestito(userOne, bookOne, LocalDate.of(2023, 06, 20), LocalDate.of(2023, 07, 15), LocalDate.of(2023, 07, 15));
+		
+		// ricerca prestiti per scheda utente
+		System.out.println("Letture in prestito all'utente selezionato");
+		cat.findUserCard(135502L).forEach(lettura -> System.out.println("- " + lettura.getLettura().getTitolo()));
+		System.out.println();
+		
+		// ricerca prestiti scaduti
+		System.out.println("Prestiti scaduti");
+		cat.findElapsed().forEach(lettura -> System.out.println("- " + lettura.getLettura().getTitolo() + " in prestito a " + lettura.getUtente().getNome() + lettura.getUtente().getCognome()));
+		System.out.println();
+				
 	}
 
 }

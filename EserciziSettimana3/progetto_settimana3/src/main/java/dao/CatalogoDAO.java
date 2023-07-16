@@ -102,6 +102,19 @@ public class CatalogoDAO {
 		return query.getResultList();
 	}
 	
+	public List<Prestito> findUserCard(long numeroTessera) {
+		TypedQuery<Prestito> query = em.createQuery("SELECT p FROM Prestito p WHERE p.utente.numeroTessera = :tessera", Prestito.class);
+		query.setParameter("tessera", numeroTessera);
+
+		return query.getResultList();
+	}
+	
+	public List<Prestito> findElapsed() {
+		TypedQuery<Prestito> query = em.createQuery("SELECT p FROM Prestito p WHERE p.dataRestituzionePrevista < CURRENT_DATE AND p.dataRestituzioneEffettiva IS NULL",	Prestito.class);
+		
+		return query.getResultList();
+	}
+	
 	public void refresh(long isbn) {
 		
 		Lettura found = em.find(Lettura.class, isbn);
