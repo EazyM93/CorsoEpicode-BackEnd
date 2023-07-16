@@ -72,9 +72,9 @@ public class CatalogoDAO {
 			
 			t.commit();
 			
-			System.out.println((found instanceof Libro)? "Libro salvato con successo" : "Rivista salvato con successo");
+			System.out.println((found instanceof Libro)? "Libro eliminato con successo" : "Rivista eliminato con successo");
 			
-		} else System.out.println("Lettura non trovato");
+		} else System.out.println("Elemento non presente nel catalogo");
 	}
 	
 	public void refresh(long isbn) {
