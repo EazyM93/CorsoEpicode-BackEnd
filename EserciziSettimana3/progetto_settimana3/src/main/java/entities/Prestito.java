@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+//@Entity
 @Getter
 @Setter
 @NoArgsConstructor
@@ -34,6 +34,13 @@ public class Prestito {
 		this.dataInizioPrestito = dataInizioPrestito;
 		this.dataRestituzionePrevista = dataRestituzionePrevista;
 		this.dataRestituzioneEffettiva = dataRestituzioneEffettiva;
+	}
+
+	@Override
+	public String toString() {
+		return "Prestito [utente=" + utente + ", lettura=" + lettura + ", dataInizioPrestito=" + dataInizioPrestito
+				+ ", dataRestituzionePrevista=" + dataRestituzionePrevista + ", dataRestituzioneEffettiva="
+				+ dataRestituzioneEffettiva + "]";
 	}
 	
 	

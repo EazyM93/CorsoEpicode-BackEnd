@@ -23,6 +23,6 @@ public abstract class Lettura {
 	private String titolo;
 	private int anno;
 	private int pagine;
-
+	
 	
 }

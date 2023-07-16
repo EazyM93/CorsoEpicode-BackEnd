@@ -20,6 +20,12 @@ public class Rivista extends Lettura{
 		super(isbn, titolo, anno, pagine);
 		this.periodicità = periodicità;
 	}
+
+	@Override
+	public String toString() {
+		return "Rivista [isbn=" + getIsbn() + ", titolo=" + getTitolo() + ", anno= " + getAnno() + ", pagine= " + getPagine() + 
+				", periodicità=" + periodicità + "]";
+	}
 	
 	
 }
