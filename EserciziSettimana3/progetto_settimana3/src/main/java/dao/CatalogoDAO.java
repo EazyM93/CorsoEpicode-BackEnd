@@ -5,6 +5,7 @@ import javax.persistence.EntityTransaction;
 
 import entities.Lettura;
 import entities.Libro;
+import entities.Prestito;
 import entities.Utente;
 
 public class CatalogoDAO {
@@ -37,11 +38,25 @@ public class CatalogoDAO {
 		System.out.println("Utente salvato con successo");
 	}
 	
+	public void salvataggioPrestito(Prestito s) {
+		EntityTransaction t = em.getTransaction();
+		t.begin();
+
+		if (!em.contains(s.getLettura())) em.persist(s.getLettura());
+		else em.persist(s);
+
+		t.commit();
+		System.out.println("Prestito salvato correttamente");
+	}
+	
 	public Lettura findByIsbn(long isbn) {
 		
 		Lettura found = em.find(Lettura.class, isbn);
 		
+		if (found == null) System.out.println("Elemento inesistente o cancellato");
+		
 		return found;
+		
 	}
 	
 	public void findByIdAndDelete(long isbn) {

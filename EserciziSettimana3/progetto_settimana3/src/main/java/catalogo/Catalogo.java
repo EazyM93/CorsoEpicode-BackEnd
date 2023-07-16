@@ -36,6 +36,10 @@ public class Catalogo {
 		cat.salvataggioUtente(new Utente(135502L, "Manuel", "Centini", LocalDate.of(1993, 10, 19)));
 		cat.salvataggioUtente(new Utente(125602L, "Luca", "Giacalone", LocalDate.of(1993, 05, 20)));
 		
+		// finding by isbn
+		cat.findByIsbn(2134569041253L);
+		System.out.println();
+		
 	}
 
 }
