@@ -1,7 +1,10 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import entities.Lettura;
 import entities.Libro;
@@ -75,6 +78,28 @@ public class CatalogoDAO {
 			System.out.println((found instanceof Libro)? "Libro eliminato con successo" : "Rivista eliminato con successo");
 			
 		} else System.out.println("Elemento non presente nel catalogo");
+	}
+	
+	public List<Lettura> findYear(int anno) {
+		TypedQuery<Lettura> query = em.createQuery("SELECT l FROM Lettura l WHERE l.anno = :anno",
+				Lettura.class);
+		query.setParameter("anno", anno);
+		return query.getResultList();
+	}
+	
+	public List<Lettura> findAuthor(String autore) {
+		TypedQuery<Lettura> query = em.createQuery("SELECT lib FROM Libro lib WHERE lib.autore = :autore", Lettura.class);
+		query.setParameter("autore", autore);
+
+		return query.getResultList();
+	}
+	
+	public List<Lettura> findTitle(String titolo) {
+		TypedQuery<Lettura> query = em.createQuery("SELECT l FROM Lettura l WHERE l.titolo LIKE :titolo",
+				Lettura.class);
+		query.setParameter("titolo", "%" + titolo + "%");
+
+		return query.getResultList();
 	}
 	
 	public void refresh(long isbn) {
