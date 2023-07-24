@@ -22,6 +22,10 @@ public class Day1240723Application {
 		// Esercizio 2
 		System.out.println(ctx.getBean("getMargherita").toString());
 		System.out.println();
+		System.out.println(ctx.getBean("getHawaiian").toString());
+		System.out.println();
+		System.out.println(ctx.getBean("getSalami").toString());
+		System.out.println();
 		
 		ctx.close();
 		
