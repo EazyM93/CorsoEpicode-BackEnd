@@ -26,4 +26,24 @@ public class BeansConfiguration {
 		m.addTopping(tl);
 		return m;
 	}
+	
+	@Bean
+	Pizza getHawaiian() {
+		Pizza m = new Pizza("Hawaiian", 1024.00, 6.49);
+		List<Topping> tl = new ArrayList<Topping>();
+		tl.add(new Topping("tomato", 100.00, 0.49));
+		tl.add(new Topping("cheese", 50.00, 0.39));
+		m.addTopping(tl);
+		return m;
+	}
+	
+	@Bean
+	Pizza getMargherita() {
+		Pizza m = new Pizza("Margherita", 1104.00, 4.99);
+		List<Topping> tl = new ArrayList<Topping>();
+		tl.add(new Topping("tomato", 100.00, 0.49));
+		tl.add(new Topping("cheese", 50.00, 0.39));
+		m.addTopping(tl);
+		return m;
+	}
 }
