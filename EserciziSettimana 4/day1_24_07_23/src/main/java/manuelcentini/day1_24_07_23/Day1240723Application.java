@@ -12,13 +12,20 @@ public class Day1240723Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Day1240723Application.class, args);
 		
-		// esercizio 1
+		
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Day1240723Application.class);
 		
+		// Esercizio 1
 		System.out.println(ctx.getBean("getHW"));
+		System.out.println();
+		
+		// Esercizio 2
+		System.out.println(ctx.getBean("getMargherita").toString());
+		System.out.println();
 		
 		ctx.close();
 		
 	}
 
 }
+   
