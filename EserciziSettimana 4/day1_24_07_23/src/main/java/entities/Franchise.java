@@ -10,6 +10,10 @@ public class Franchise extends Products{
 	public Franchise(String name, Double price) {
 		super(name, price);
 	}
-	
+
+	@Override
+	public String toString() {
+		return getName() + " - Prezzo: " + getPrice() + "€";
+	}
 
 }

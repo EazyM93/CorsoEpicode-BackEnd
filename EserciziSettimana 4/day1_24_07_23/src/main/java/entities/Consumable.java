@@ -14,6 +14,9 @@ public abstract class Consumable extends Products{
 		this.calories = calories;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return getName() + " - Calorie: " + getCalories() + " / Prezzo: " + getPrice() + "€";
+	}
 	
 }
