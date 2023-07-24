@@ -20,6 +20,7 @@ public class Day1240723Application {
 		System.out.println();
 		
 		// Esercizio 2
+		System.out.println("PIZZE");
 		System.out.println(ctx.getBean("getMargherita").toString());
 		System.out.println();
 		System.out.println(ctx.getBean("getHawaiian").toString());
@@ -27,6 +28,20 @@ public class Day1240723Application {
 		System.out.println(ctx.getBean("getSalami").toString());
 		System.out.println();
 		
+		System.out.println("TOPPING");
+		System.out.println(ctx.getBean("getTomato").toString());
+		System.out.println();
+		System.out.println(ctx.getBean("getCheese").toString());
+		System.out.println();
+		System.out.println(ctx.getBean("getHam").toString());
+		System.out.println();
+		System.out.println(ctx.getBean("getPineapple").toString());
+		System.out.println();
+		System.out.println(ctx.getBean("getSal").toString());
+		System.out.println();
+		
+		System.out.println("PIZZA CON UN TOPPING");
+		System.out.println(ctx.getBean("oneTopping").toString());
 		ctx.close();
 		
 	}
