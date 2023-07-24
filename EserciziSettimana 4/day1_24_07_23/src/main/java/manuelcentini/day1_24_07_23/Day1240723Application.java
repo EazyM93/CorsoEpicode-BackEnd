@@ -40,8 +40,7 @@ public class Day1240723Application {
 		System.out.println(ctx.getBean("getSal").toString());
 		System.out.println();
 		
-//		System.out.println("PIZZA CON UN TOPPING");
-//		System.out.println(ctx.getBean("oneTopping").toString());
+
 		ctx.close();
 		
 	}

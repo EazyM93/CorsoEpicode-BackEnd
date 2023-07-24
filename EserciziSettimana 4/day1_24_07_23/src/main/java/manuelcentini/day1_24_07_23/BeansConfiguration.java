@@ -73,12 +73,4 @@ public class BeansConfiguration {
 		return m;
 	}
 	
-//	@Bean
-//	Pizza oneTopping(Topping t) {
-//		Pizza m = new Pizza("Personalizzata", 900.00, 8.99);
-//		List<Topping> tl = new ArrayList<Topping>();
-//		tl.add(t);
-//		m.addTopping(tl);
-//		return m;
-//	}
 }
