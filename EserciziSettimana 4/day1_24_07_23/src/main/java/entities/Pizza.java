@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Pizza extends Consumable implements InterfaceProduct{
+public class Pizza extends Consumable {
 	
  	
 	public Pizza(String name, Double price, Double calories) {
