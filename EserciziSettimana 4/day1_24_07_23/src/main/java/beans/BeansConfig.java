@@ -10,6 +10,7 @@ import entities.Franchise;
 import entities.FranchiseMug;
 import entities.Menu;
 import entities.Ordine;
+import entities.Ordini;
 import entities.PizzaHawaiian;
 import entities.PizzaMargherita;
 import entities.PizzaSalami;
@@ -43,7 +44,19 @@ public class BeansConfig {
 	}
 	
 	@Bean
-	public Ordine ordine() {
+	public Ordini ordini() {
+		
+		Ordini ordini = new Ordini();
+		
+		ordini.getOrdiniList().add(tavoloUno());
+		ordini.getOrdiniList().add(tavoloDue());
+		
+		return ordini;
+
+	}
+	
+	@Bean
+	public Ordine tavoloUno() {
 		
 		Ordine ordine = new Ordine(1, StatoOrdine.IN_CORSO, 3, LocalDateTime.now(), tavoloDaQuattro());
 		
@@ -56,9 +69,23 @@ public class BeansConfig {
 		ordine.addBevandaAndSetTotale(drinkLemonade());
 		
 		return ordine;
-
 	}
 	
+	@Bean
+	public Ordine tavoloDue() {
+		
+		Ordine ordine = new Ordine(2, StatoOrdine.IN_CORSO, 5, LocalDateTime.now(), tavoloDaSei());
+		
+		ordine.addPizzaAndSetTotale(pizzaMargherita());
+		ordine.addPizzaAndSetTotale(pizzaHawaiian());
+		ordine.addPizzaAndSetTotale(pizzaMargherita());
+		
+		ordine.addBevandaAndSetTotale(drinkLemonade());
+		ordine.addBevandaAndSetTotale(drinkLemonade());
+		ordine.addBevandaAndSetTotale(drinkLemonade());
+		
+		return ordine;
+	}
 	
 	@Bean
 	public TavoloDaQuattro tavoloDaQuattro() {

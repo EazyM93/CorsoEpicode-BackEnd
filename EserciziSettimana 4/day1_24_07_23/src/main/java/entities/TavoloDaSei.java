@@ -5,7 +5,7 @@ import enums.StatoTavolo;
 public class TavoloDaSei extends Tavolo{
 
 	public TavoloDaSei() {
-		super(1, 6, StatoTavolo.LIBERO);
+		super(2, 6, StatoTavolo.LIBERO);
 	}
 	
 }
