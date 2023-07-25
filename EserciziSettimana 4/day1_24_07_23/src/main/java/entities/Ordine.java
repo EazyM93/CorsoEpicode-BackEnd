@@ -5,33 +5,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 
 import enums.StatoOrdine;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
+//@PropertySource("classpath:application.properties")
 public class Ordine {
 
-	@Value("${application.coperto}")
-	private int coperto;
+//	@Value("${application.coperto}")
+	private int coperto = 2;
 	
-	List<MenuItem> ordine = new ArrayList<MenuItem>();
+	private List<PizzaBase> ordinePizza = new ArrayList<PizzaBase>();
+	private List<Drink> ordineBevande = new ArrayList<Drink>();
 	private int numeroOrdine;
 	private StatoOrdine stato;
 	private int numeroCoperti;
 	private LocalDateTime orario;
 	private Double importoTotale;
-		
-	public void setImportoTotale() {
-		double sum = 0;
-		for(MenuItem e: ordine) sum += e.getPrice();
-		sum += numeroCoperti * coperto;
-		importoTotale += sum;
+	private Tavolo tavolo;
+	
+	public Ordine(int numeroOrdine, StatoOrdine stato, int numeroCoperti, LocalDateTime orario, Tavolo tavolo) {
+		this.numeroOrdine = numeroOrdine;
+		this.stato = stato;
+		this.numeroCoperti = numeroCoperti;
+		this.orario = orario;
+		this.importoTotale = (double) (numeroCoperti * coperto);
+		this.tavolo = tavolo;
 	}
+		
+	public void addPizzaAndSetTotale(PizzaBase p) {
+		ordinePizza.add(p);
+		importoTotale += p.getPrice();
+	}
+
+	public void addBevandaAndSetTotale(Drink d) {
+		ordineBevande.add(d);
+		importoTotale += d.getPrice();
+	}
+
+	public int getCostoCoperti() {
+		return numeroCoperti * coperto;
+	}
+
+
 	
 	
 	

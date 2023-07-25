@@ -18,4 +18,12 @@ public class GestioneOrdini {
 
 	}
 	
+	public void stampaOrdine() {
+		System.out.println("Ordine corrente");
+		ordine.getOrdinePizza().forEach(o -> System.out.println("- " + o.getName() + " " + o.getPrice() + "€"));
+		ordine.getOrdineBevande().forEach(b -> System.out.println("- " + b.getName() + " " + b.getPrice() + "€"));
+		System.out.println("Coperti : " + ordine.getCostoCoperti() + "€");
+		System.out.printf("Totale: %.2f €", ordine.getImportoTotale());
+	}
+	
 }

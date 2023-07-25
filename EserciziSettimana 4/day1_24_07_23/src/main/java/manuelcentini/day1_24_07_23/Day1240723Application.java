@@ -16,8 +16,9 @@ public class Day1240723Application {
 		System.out.println();
 		stampaM.testTopping();
 		
+		System.out.println();
 		GestioneOrdini stampaO = new GestioneOrdini();
-		
+		stampaO.stampaOrdine();
 	}
 
 }
