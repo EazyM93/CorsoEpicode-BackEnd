@@ -43,16 +43,6 @@ public class BeansConfig {
 	}
 	
 	@Bean
-	public TavoloDaQuattro tavoloDaQuattro() {
-		return new TavoloDaQuattro(); 
-	} 
-	
-	@Bean
-	public TavoloDaSei tavoloDaSei() {
-		return new TavoloDaSei(); 
-	} 
-	
-	@Bean
 	public Ordine ordine() {
 		
 		Ordine ordine = new Ordine(1, StatoOrdine.IN_CORSO, 3, LocalDateTime.now(), tavoloDaQuattro());
@@ -68,7 +58,18 @@ public class BeansConfig {
 		return ordine;
 
 	}
-
+	
+	
+	@Bean
+	public TavoloDaQuattro tavoloDaQuattro() {
+		return new TavoloDaQuattro(); 
+	} 
+	
+	@Bean
+	public TavoloDaSei tavoloDaSei() {
+		return new TavoloDaSei(); 
+	} 
+	
 	@Bean
 	public PizzaMargherita pizzaMargherita() {
 		return new PizzaMargherita();
