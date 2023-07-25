@@ -13,11 +13,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Component
+//@Component
 public class Ordine {
 
-	@Value("${application.coperto}")
-	private int coperto;
+//	@Value("${application.coperto}")
+	private int coperto = 2;
 	
 	private List<PizzaBase> ordinePizza = new ArrayList<PizzaBase>();
 	private List<Drink> ordineBevande = new ArrayList<Drink>();
