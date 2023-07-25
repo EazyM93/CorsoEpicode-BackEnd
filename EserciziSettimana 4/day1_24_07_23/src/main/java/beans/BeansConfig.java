@@ -7,6 +7,7 @@ import entities.DrinkLemonade;
 import entities.Franchise;
 import entities.FranchiseMug;
 import entities.Menu;
+import entities.Ordine;
 import entities.PizzaHawaiian;
 import entities.PizzaMargherita;
 import entities.PizzaSalami;
@@ -33,6 +34,15 @@ public class BeansConfig {
 		menu.getMenuFranchise().add(franchiseMug());
 
 		return menu;
+
+	}
+	
+	@Bean
+	public Ordine ordine() {
+
+		Ordine ordine = new Ordine();
+
+		return ordine;
 
 	}
 
