@@ -3,6 +3,7 @@ package beans;
 import java.time.LocalDateTime;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
 
 import entities.Drink;
 import entities.DrinkLemonade;
@@ -88,36 +89,43 @@ public class BeansConfig {
 	}
 	
 	@Bean
+	@Scope("singleton")
 	public TavoloDaQuattro tavoloDaQuattro() {
 		return new TavoloDaQuattro(); 
 	} 
 	
 	@Bean
+	@Scope("singleton")
 	public TavoloDaSei tavoloDaSei() {
 		return new TavoloDaSei(); 
 	} 
 	
 	@Bean
+	@Scope("singleton")
 	public PizzaMargherita pizzaMargherita() {
 		return new PizzaMargherita();
 	}
 
 	@Bean
+	@Scope("singleton")
 	public PizzaHawaiian pizzaHawaiian() {
 		return new PizzaHawaiian();
 	}
 
 	@Bean
+	@Scope("singleton")
 	public PizzaSalami pizzaSalami() {
 		return new PizzaSalami();
 	}
 
 	@Bean
+	@Scope("singleton")
 	public Drink drinkLemonade() {
 		return new DrinkLemonade();
 	}
 	
 	@Bean
+	@Scope("singleton")
 	public Franchise franchiseMug() {
 		return new FranchiseMug();
 	}
