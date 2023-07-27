@@ -3,7 +3,6 @@ package day4_27_07_23.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,9 +10,13 @@ import lombok.Setter;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)  
 @Getter
 @Setter
-@AllArgsConstructor
 public abstract class Consumabili extends Prodotti{
 
-	private Double calorie;	
+	private Double calorie;
+
+	public Consumabili(String nomeProdotto, Double prezzo, Double calorie) {
+		super(nomeProdotto, prezzo);
+		this.calorie = calorie;
+	}
 	
 }

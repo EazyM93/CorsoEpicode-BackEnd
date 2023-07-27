@@ -1,7 +1,6 @@
 package day4_27_07_23.entities; 
 
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
