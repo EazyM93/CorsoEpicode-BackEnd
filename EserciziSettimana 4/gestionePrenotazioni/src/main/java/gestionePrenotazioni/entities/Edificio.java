@@ -1,11 +1,14 @@
 package gestionePrenotazioni.entities;
 
+import java.util.Set;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.annotation.Id;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,5 +39,8 @@ public class Edificio {
 	
 	@Column(name="città")
 	private String city;
+	
+	// @OneToMany(mappedBy = "edificio")
+	// private Set<Postazione> postazioni;
 	
 }
