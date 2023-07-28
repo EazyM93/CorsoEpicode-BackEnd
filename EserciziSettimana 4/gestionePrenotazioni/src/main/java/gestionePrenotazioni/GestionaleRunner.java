@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import gestionePrenotazioni.dao.EdificioService;
 import gestionePrenotazioni.dao.UtenteService;
 import gestionePrenotazioni.entities.Edificio;
+import gestionePrenotazioni.entities.Utente;
 
 @Component
 public class GestionaleRunner implements CommandLineRunner{
@@ -28,7 +29,11 @@ public class GestionaleRunner implements CommandLineRunner{
 				.build());
 		
 		// ------------------------------------------------creazione & salvataggio utente
-		
+		us.salvaUtente(Utente.builder()
+				.username("Ajeje")
+				.nomeCompleto("Ajeje Brazorf")
+				.email("ajezorf@gmail.com")
+				.build());
 	}
     
     
