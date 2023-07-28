@@ -2,8 +2,10 @@ package gestionePrenotazioni;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
+import gestionePrenotazioni.config.GestionaleConfiguration;
 import gestionePrenotazioni.dao.EdificioService;
 import gestionePrenotazioni.dao.UtenteService;
 import gestionePrenotazioni.entities.Edificio;
@@ -17,7 +19,10 @@ public class GestionaleRunner implements CommandLineRunner{
 	EdificioService es;
     @Autowired
     UtenteService us;
-
+    
+    // ------------------------------------------------creazione ctx
+    AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(GestionaleConfiguration.class);
+    
 	@Override
 	public void run(String... args) throws Exception {
 	
@@ -29,13 +34,17 @@ public class GestionaleRunner implements CommandLineRunner{
 				.build());
 		
 		// ------------------------------------------------creazione & salvataggio utente
-		us.salvaUtente(Utente.builder()
-				.username("Ajeje")
-				.nomeCompleto("Ajeje Brazorf")
-				.email("ajezorf@gmail.com")
-				.build());
+		
 	}
     
-    
+	// ------------------------------------------------creazione & salvataggio utente
+	public Utente inserisciUtente(String username, String nome, String email) {
+		Utente u = (Utente) ctx.getBean("u");
+		u.setUsername(username);
+		u.setNomeCompleto(nome);
+		u.setEmail(email);
+		us.salvaUtente(u);
+		return u;
+	}
 	
 }
