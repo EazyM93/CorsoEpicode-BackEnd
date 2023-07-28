@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import gestionePrenotazioni.entities.Edificio;
 
 @Service
-public class EdificiService {
+public class EdificioService {
 	
 	@Autowired
 	private EdificioRepository ed;
