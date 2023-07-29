@@ -2,14 +2,11 @@ package gestionePrenotazioni;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
 import gestionePrenotazioni.config.GestionaleConfiguration;
 import gestionePrenotazioni.dao.EdificioService;
 import gestionePrenotazioni.dao.UtenteService;
-import gestionePrenotazioni.entities.Edificio;
-import gestionePrenotazioni.entities.Utente;
 
 @Component
 public class GestionaleRunner implements CommandLineRunner{
@@ -20,31 +17,21 @@ public class GestionaleRunner implements CommandLineRunner{
     @Autowired
     UtenteService us;
     
-    // ------------------------------------------------creazione ctx
-    AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(GestionaleConfiguration.class);
+    // ------------------------------------------------creazione config
+    @Autowired
+    private GestionaleConfiguration config;
     
 	@Override
 	public void run(String... args) throws Exception {
 	
 		// ------------------------------------------------creazione & salvataggio edificio 
-		es.salvaEdificio(Edificio.builder()
-				.nomeEdificio("Palazzo Rosso")
-				.indirizzo("Via Rossa 42")
-				.city("Roma")
-				.build());
+		es.salvaEdificio(config
+				.newEdificio("Palazzo Rosso", "Via Rossa 42", "Roma"));
 		
 		// ------------------------------------------------creazione & salvataggio utente
-		
+		us.salvaUtente(config
+				.newUtente("Ajeje", "Ajeje Brazorf", "ajezorf@gmail.com"));
 	}
     
-	// ------------------------------------------------creazione & salvataggio utente
-	public Utente inserisciUtente(String username, String nome, String email) {
-		Utente u = (Utente) ctx.getBean("u");
-		u.setUsername(username);
-		u.setNomeCompleto(nome);
-		u.setEmail(email);
-		us.salvaUtente(u);
-		return u;
-	}
 	
 }

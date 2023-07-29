@@ -13,10 +13,23 @@ import gestionePrenotazioni.entities.Utente;
 public class GestionaleConfiguration {
 
 	@Bean
-	public Edificio e() {return new Edificio();}
+	public Edificio newEdificio(String nomeEdificio, String indirizzo, String city) {
+		Edificio.builder()
+			.nomeEdificio(nomeEdificio)
+			.indirizzo(indirizzo)
+			.city(city)
+			.build();
+		return new Edificio();}
 	
 	@Bean
-	public Utente u() {return new Utente();}
+	public Utente newUtente(String username, String nome, String email) {
+		Utente.builder()
+			.username(username)
+			.nomeCompleto(nome)
+			.email(email)
+			.build();
+		return new Utente();
+	}
 	
 	@Bean
 	public Postazione p( ) {return new Postazione();}
