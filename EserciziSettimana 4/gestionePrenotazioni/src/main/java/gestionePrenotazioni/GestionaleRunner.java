@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 
 import gestionePrenotazioni.config.GestionaleConfiguration;
 import gestionePrenotazioni.dao.EdificioService;
+import gestionePrenotazioni.dao.PostazioneService;
 import gestionePrenotazioni.dao.UtenteService;
+import gestionePrenotazioni.enums.TipologiaPostazione;
 
 @Component
 public class GestionaleRunner implements CommandLineRunner{
@@ -16,11 +18,14 @@ public class GestionaleRunner implements CommandLineRunner{
 	EdificioService es;
     @Autowired
     UtenteService us;
+    @Autowired
+    PostazioneService ps;
     
     // ------------------------------------------------creazione config
     @Autowired
     private GestionaleConfiguration config;
     
+    // ------------------------------------------------Runnable------------------------------------------------
 	@Override
 	public void run(String... args) throws Exception {
 	
@@ -31,6 +36,10 @@ public class GestionaleRunner implements CommandLineRunner{
 		// ------------------------------------------------creazione & salvataggio utente
 		us.salvaUtente(config
 				.newUtente("Ajeje", "Ajeje Brazorf", "ajezorf@gmail.com"));
+		
+		// ------------------------------------------------creazione & salvataggio
+		ps.salvaPostazione(config
+				.newPostazione("Stanza uno", TipologiaPostazione.PRIVATO, 3, es.getById(1)));
 	}
     
 	

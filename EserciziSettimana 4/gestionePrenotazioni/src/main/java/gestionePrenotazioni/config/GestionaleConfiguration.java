@@ -7,6 +7,7 @@ import org.springframework.context.annotation.PropertySource;
 import gestionePrenotazioni.entities.Edificio;
 import gestionePrenotazioni.entities.Postazione;
 import gestionePrenotazioni.entities.Utente;
+import gestionePrenotazioni.enums.TipologiaPostazione;
 
 @Configuration
 @PropertySource("classpath:application.properties")
@@ -32,5 +33,13 @@ public class GestionaleConfiguration {
 	}
 	
 	@Bean
-	public Postazione p( ) {return new Postazione();}
+	public Postazione newPostazione(String descrizione, TipologiaPostazione tipo, int occupantiMax, Edificio edificio) {
+		Postazione.builder()
+		.descrizione(descrizione)
+		.tipo(tipo)
+		.numerooccupantimax(occupantiMax)
+		.edificio(edificio)
+		.build();
+		return new Postazione();
+	}
 }
