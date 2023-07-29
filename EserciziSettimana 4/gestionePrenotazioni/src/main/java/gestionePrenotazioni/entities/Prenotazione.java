@@ -1,15 +1,15 @@
 package gestionePrenotazioni.entities;
 
-import java.util.Set;
+import java.time.LocalDate;
 
 import org.springframework.context.annotation.Scope;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,30 +18,27 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="edifici")
+@Table(name = "prenotazioni")
+@Builder
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Scope("prototype")
-public class Edificio {
+public class Prenotazione {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id_edificio;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int prenotazione_id;
 	
-	@Column(name="nome_edificio")
-	private String nomeEdificio;
+	private LocalDate dataPrenotazione;
 	
-	@Column(name="indirizzo")
-	private String indirizzo;
+	@ManyToOne
+	@JoinColumn(name = "id_utente")
+	private Utente utente;
 	
-	@Column(name="città")
-	private String city;
-	
-	@OneToMany(mappedBy = "edificio")
-	private Set<Postazione> postazioni;
+	@ManyToOne
+	@JoinColumn(name = "id_postazione")
+	private Postazione postazione;
 	
 }

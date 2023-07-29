@@ -49,8 +49,8 @@ public class Postazione {
 	@JoinColumn(name="id_edificio")
 	private Edificio edificio;
 	
-	//@OneToMany(mappedBy = "postazione")
-	//private Set<Prenotazione> prenotazioni;
+	@OneToMany(mappedBy = "postazione")
+	private Set<Prenotazione> prenotazioni;
 	
 	
 }

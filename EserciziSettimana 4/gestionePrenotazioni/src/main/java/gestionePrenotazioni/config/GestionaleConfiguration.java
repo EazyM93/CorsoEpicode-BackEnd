@@ -6,6 +6,7 @@ import org.springframework.context.annotation.PropertySource;
 
 import gestionePrenotazioni.entities.Edificio;
 import gestionePrenotazioni.entities.Postazione;
+import gestionePrenotazioni.entities.Prenotazione;
 import gestionePrenotazioni.entities.Utente;
 
 @Configuration
@@ -21,4 +22,6 @@ public class GestionaleConfiguration {
 	@Bean
 	public Postazione newPostazione() {return new Postazione();}
 	
+	@Bean
+	public Prenotazione newPrenotazione() {return new Prenotazione();}
 }

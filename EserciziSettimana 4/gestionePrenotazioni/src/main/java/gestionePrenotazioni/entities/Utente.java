@@ -36,7 +36,7 @@ public class Utente {
 	private String nomeCompleto;
 	private String email;
 	
-	//@OneToMany(mappedBy="utente")
-	//Set<Prenotazione> prenotazioni;
+	@OneToMany(mappedBy="utente")
+	Set<Prenotazione> prenotazioni;
 	
 }

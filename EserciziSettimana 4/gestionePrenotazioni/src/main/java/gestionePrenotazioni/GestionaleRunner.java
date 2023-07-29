@@ -46,13 +46,16 @@ public class GestionaleRunner implements CommandLineRunner{
 		u.setEmail("ajezorf@gmail.com");
 		us.salvaUtente(u);
 	
-		// ------------------------------------------------creazione & salvataggio
+		// ------------------------------------------------creazione & salvataggio postazione
 		Postazione p = config.newPostazione();
+		Edificio ed = es.getById(1).get();
 		p.setDescrizione("Stanza uno");
 		p.setTipo(TipologiaPostazione.PRIVATO);
 		p.setNumerooccupantimax(3);
-		p.setEdificio(es.getById(1).get());
+		p.setEdificio(ed);
+		ed.getPostazioni().add(p);
 		ps.salvaPostazione(p);
+		
 	}
     
 	
