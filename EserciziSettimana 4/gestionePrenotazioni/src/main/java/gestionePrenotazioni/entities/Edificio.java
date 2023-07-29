@@ -32,7 +32,7 @@ public class Edificio {
 	@Column(name="id")
 	private int id_edificio;
 	
-	@Column(name="nome")
+	@Column(name="nome_edificio")
 	private String nomeEdificio;
 	
 	@Column(name="indirizzo")

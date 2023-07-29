@@ -8,6 +8,9 @@ import gestionePrenotazioni.config.GestionaleConfiguration;
 import gestionePrenotazioni.dao.EdificioService;
 import gestionePrenotazioni.dao.PostazioneService;
 import gestionePrenotazioni.dao.UtenteService;
+import gestionePrenotazioni.entities.Edificio;
+import gestionePrenotazioni.entities.Postazione;
+import gestionePrenotazioni.entities.Utente;
 import gestionePrenotazioni.enums.TipologiaPostazione;
 
 @Component
@@ -30,16 +33,26 @@ public class GestionaleRunner implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 	
 		// ------------------------------------------------creazione & salvataggio edificio 
-		es.salvaEdificio(config
-				.newEdificio("Palazzo Rosso", "Via Rossa 42", "Roma"));
+		Edificio e = config.newEdificio();
+		e.setNomeEdificio("Primo Palazzo");
+		e.setIndirizzo("Via Maremma 37");
+		e.setCity("Roma");
+		es.salvaEdificio(e);
 		
 		// ------------------------------------------------creazione & salvataggio utente
-		us.salvaUtente(config
-				.newUtente("Ajeje", "Ajeje Brazorf", "ajezorf@gmail.com"));
-		
+		Utente u = config.newUtente();
+		u.setUsername("Ajeje");
+		u.setNomeCompleto("Ajeje Brazorf");
+		u.setEmail("ajezorf@gmail.com");
+		us.salvaUtente(u);
+	
 		// ------------------------------------------------creazione & salvataggio
-		ps.salvaPostazione(config
-				.newPostazione("Stanza uno", TipologiaPostazione.PRIVATO, 3, es.getById(1)));
+		Postazione p = config.newPostazione();
+		p.setDescrizione("Stanza uno");
+		p.setTipo(TipologiaPostazione.PRIVATO);
+		p.setNumerooccupantimax(3);
+		p.setEdificio(es.getById(1).get());
+		ps.salvaPostazione(p);
 	}
     
 	
