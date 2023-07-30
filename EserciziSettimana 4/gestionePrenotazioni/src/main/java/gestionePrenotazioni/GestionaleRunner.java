@@ -1,6 +1,7 @@
 package gestionePrenotazioni;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -40,20 +41,36 @@ public class GestionaleRunner implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 	
 		// ------------------------------------------------creazione & salvataggio edificio 
-		//es.salvaEdificio(es.costruisciEdificio("Primo Palazzo", "Via Maremma 37", "Roma"));
+		es.salvaEdificio(es.costruisciEdificio("Primo Palazzo", "Via Maremma 37", "Roma"));
 		
 		// ------------------------------------------------creazione & salvataggio utente
-		//us.salvaUtente(us.creaUtente("Ajeje", "Ajeje Brazorf", "ajezorf@gmail.com"));
+		us.salvaUtente(us.creaUtente("Ajeje", "Ajeje Brazorf", "ajezorf@gmail.com"));
 	
 		// ------------------------------------------------creazione & salvataggio postazione
-		//Edificio ed = es.getById(1);
-		//ps.salvaPostazione(ps.creaPostazione("Stanza uno", TipologiaPostazione.PRIVATO, 3, ed));
+		Edificio ed = es.getById(1);
+		ps.salvaPostazione(ps.creaPostazione("Stanza uno", TipologiaPostazione.PRIVATO, 3, ed));
 		
 		// ------------------------------------------------creazione & salvataggio prenotazione
-		//Utente utenteCorrente = us.getById(1);
-		//Postazione postazioneDaPrenotare = ps.getById(1);
-		//Prenotazione prenotazioneCorrente = prenS.creaPrenotazione(LocalDate.of(2023, 10, 12), utenteCorrente, postazioneDaPrenotare);
-		//prenS.salvaPrenotazione(prenotazioneCorrente);
+		Utente utenteCorrente = us.getById(1);
+		Postazione postazioneDaPrenotare = ps.getById(1);
+		Prenotazione prenotazioneCorrente = prenS.creaPrenotazione(LocalDate.of(2023, 10, 12), utenteCorrente, postazioneDaPrenotare);
+		prenS.salvaPrenotazione(prenotazioneCorrente);
+		
+		// ------------------------------------------------cerca per tipo e città
+		TipologiaPostazione tipologiaCercata = TipologiaPostazione.PRIVATO;
+		String cityCercata = "Roma";
+		
+		List<Postazione> listaPostazioni = ps.findByTipoAndCittà(tipologiaCercata, cityCercata);
+		
+		if(listaPostazioni.isEmpty()) {
+			System.out.printf("Nessuna postazione %s trovata a %s\n", tipologiaCercata.toString(), cityCercata);
+		}else {
+			System.out.printf("Elenco postazioni % a %s\n", tipologiaCercata.toString(), cityCercata);
+			for(Postazione p: listaPostazioni) {
+				System.out.printf("- %s", p.getDescrizione());
+			}
+		}
+		
 	}
     
 	

@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -38,10 +39,10 @@ public class Edificio {
 	@Column(name="indirizzo")
 	private String indirizzo;
 	
-	@Column(name="città")
+	@Column(name="city")
 	private String city;
 	
-	@OneToMany(mappedBy = "edificio")
+	@OneToMany(mappedBy = "edificio", fetch = FetchType.EAGER)
 	private Set<Postazione> postazioni;
 	
 }
