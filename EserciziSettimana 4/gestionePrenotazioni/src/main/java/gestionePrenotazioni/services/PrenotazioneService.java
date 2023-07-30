@@ -20,6 +20,7 @@ public class PrenotazioneService {
 	public Prenotazione creaPrenotazione(LocalDate dataPrenotazione, Utente utente, Postazione postazione) {
 		return Prenotazione.builder()
 				.dataPrenotazione(dataPrenotazione)
+				.dataFineSoggiorno(dataPrenotazione.plusDays(1))
 				.utente(utente)
 				.postazione(postazione)
 				.build();

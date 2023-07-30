@@ -32,6 +32,7 @@ public class Prenotazione {
 	private int prenotazione_id;
 	
 	private LocalDate dataPrenotazione;
+	private LocalDate dataFineSoggiorno;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_utente")
