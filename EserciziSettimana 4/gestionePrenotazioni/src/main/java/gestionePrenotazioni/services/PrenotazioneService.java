@@ -25,9 +25,15 @@ public class PrenotazioneService {
 				.build();
 	}
 	
-	public void salvaPostazione(Prenotazione p) {
-		prenR.save(p);
-		System.out.println("Prenotazione effettuata!");
+	public void salvaPrenotazione(Prenotazione p) {
+		LocalDate dp = p.getDataPrenotazione();
+		Optional<Prenotazione> existingPrenotazione = prenR.findFirstByUtenteAndDataPrenotazione(p.getUtente(), dp);
+		
+		if(existingPrenotazione.isPresent()) System.out.println("Data non disponibile! Impossibile creare la prenotazione!");
+		else {
+			prenR.save(p);
+			System.out.println("Prenotazione effettuata!");
+		}		
 	}
 	
 	public Prenotazione getById(int id){
