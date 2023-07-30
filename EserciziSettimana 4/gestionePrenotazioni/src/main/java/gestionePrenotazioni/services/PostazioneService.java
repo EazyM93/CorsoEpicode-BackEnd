@@ -34,8 +34,8 @@ public class PostazioneService {
 		return pr.findById(id).get();
 	}
 	
-	public List<Postazione> findByTipoAndCity(TipologiaPostazione tipo, String city){
-		return pr.findByTipoAndCity(tipo, city);
+	public List<Postazione> findByTipoAndEdificioCity(TipologiaPostazione tipo, String city){
+		return pr.findByTipoAndEdificioCity(tipo, city);
 	}
 	
 }

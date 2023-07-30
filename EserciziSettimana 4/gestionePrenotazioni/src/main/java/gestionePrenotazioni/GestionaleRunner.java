@@ -54,14 +54,14 @@ public class GestionaleRunner implements CommandLineRunner{
 		TipologiaPostazione tipologiaCercata = TipologiaPostazione.PRIVATO;
 		String cityCercata = "Roma";
 		
-		List<Postazione> listaPostazioni = ps.findByTipoAndCity(tipologiaCercata, cityCercata);
+		List<Postazione> listaPostazioni = ps.findByTipoAndEdificioCity(tipologiaCercata, cityCercata);
 		
 		if(listaPostazioni.isEmpty()) {
 			System.out.printf("Nessuna postazione %s trovata a %s\n", tipologiaCercata.toString(), cityCercata);
 		}else {
-			System.out.printf("Elenco postazioni % a %s\n", tipologiaCercata.toString(), cityCercata);
+			System.out.printf("Elenco postazioni %s a %s\n", tipologiaCercata.toString(), cityCercata);
 			for(Postazione p: listaPostazioni) {
-				System.out.printf("- %s", p.getDescrizione());
+				System.out.printf("- %s\n", p.getDescrizione());
 			}
 		}
 		
