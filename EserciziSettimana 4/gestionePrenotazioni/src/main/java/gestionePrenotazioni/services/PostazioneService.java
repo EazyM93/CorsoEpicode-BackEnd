@@ -14,7 +14,7 @@ import gestionePrenotazioni.repository.PostazioneRepository;
 public class PostazioneService {
 
 	@Autowired
-	private PostazioneRepository ur;
+	private PostazioneRepository pr;
 	
 	public Postazione creaPostazione(String descrizione, TipologiaPostazione tipo, int occupantiMax, Edificio edificio) {
 		return Postazione.builder()
@@ -26,16 +26,16 @@ public class PostazioneService {
 	}
 	
 	public void salvaPostazione(Postazione u) {
-		ur.save(u);
+		pr.save(u);
 		System.out.println("Postazione salvata con successo.");
 	}
 	
 	public Postazione getById(int id){
-		return ur.findById(id).get();
+		return pr.findById(id).get();
 	}
 	
-	public List<Postazione> findByTipoAndCittà(TipologiaPostazione tipo, String city){
-		return ur.findByTipoAndCittà(tipo, city);
+	public List<Postazione> findByTipoAndCity(TipologiaPostazione tipo, String city){
+		return pr.findByTipoAndCity(tipo, city);
 	}
 	
 }

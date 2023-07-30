@@ -11,6 +11,6 @@ import gestionePrenotazioni.enums.TipologiaPostazione;
 @Repository
 public interface PostazioneRepository extends JpaRepository<Postazione, Integer>{
 
-	List<Postazione> findByTipoAndCittà(TipologiaPostazione tipo, String city);
+	List<Postazione> findByTipoAndCity(TipologiaPostazione tipo, String city);
 	
 }

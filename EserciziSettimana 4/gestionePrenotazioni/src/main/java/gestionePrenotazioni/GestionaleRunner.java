@@ -7,13 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import gestionePrenotazioni.config.GestionaleConfiguration;
 import gestionePrenotazioni.entities.Edificio;
 import gestionePrenotazioni.entities.Postazione;
 import gestionePrenotazioni.entities.Prenotazione;
 import gestionePrenotazioni.entities.Utente;
 import gestionePrenotazioni.enums.TipologiaPostazione;
-import gestionePrenotazioni.repository.PrenotazioniRepository;
 import gestionePrenotazioni.services.EdificioService;
 import gestionePrenotazioni.services.PostazioneService;
 import gestionePrenotazioni.services.PrenotazioneService;
@@ -31,10 +29,6 @@ public class GestionaleRunner implements CommandLineRunner{
     PostazioneService ps;
     @Autowired
 	PrenotazioneService prenS;
-    
-    // ------------------------------------------------creazione config
-    @Autowired
-    private GestionaleConfiguration config;
     
     // ------------------------------------------------Runnable------------------------------------------------
 	@Override
@@ -60,7 +54,7 @@ public class GestionaleRunner implements CommandLineRunner{
 		TipologiaPostazione tipologiaCercata = TipologiaPostazione.PRIVATO;
 		String cityCercata = "Roma";
 		
-		List<Postazione> listaPostazioni = ps.findByTipoAndCittà(tipologiaCercata, cityCercata);
+		List<Postazione> listaPostazioni = ps.findByTipoAndCity(tipologiaCercata, cityCercata);
 		
 		if(listaPostazioni.isEmpty()) {
 			System.out.printf("Nessuna postazione %s trovata a %s\n", tipologiaCercata.toString(), cityCercata);
