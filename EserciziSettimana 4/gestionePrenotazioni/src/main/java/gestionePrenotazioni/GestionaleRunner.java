@@ -5,13 +5,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import gestionePrenotazioni.config.GestionaleConfiguration;
-import gestionePrenotazioni.dao.EdificioService;
-import gestionePrenotazioni.dao.PostazioneService;
-import gestionePrenotazioni.dao.UtenteService;
 import gestionePrenotazioni.entities.Edificio;
 import gestionePrenotazioni.entities.Postazione;
 import gestionePrenotazioni.entities.Utente;
 import gestionePrenotazioni.enums.TipologiaPostazione;
+import gestionePrenotazioni.services.EdificioService;
+import gestionePrenotazioni.services.PostazioneService;
+import gestionePrenotazioni.services.UtenteService;
 
 @Component
 public class GestionaleRunner implements CommandLineRunner{
@@ -33,28 +33,22 @@ public class GestionaleRunner implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 	
 		// ------------------------------------------------creazione & salvataggio edificio 
-		Edificio e = config.newEdificio();
-		e.setNomeEdificio("Primo Palazzo");
-		e.setIndirizzo("Via Maremma 37");
-		e.setCity("Roma");
-		es.salvaEdificio(e);
+		es.salvaEdificio(
+				es.costruisciEdificio("Primo Palazzo", "Via Maremma 37", "Roma")
+				);
 		
 		// ------------------------------------------------creazione & salvataggio utente
-		Utente u = config.newUtente();
-		u.setUsername("Ajeje");
-		u.setNomeCompleto("Ajeje Brazorf");
-		u.setEmail("ajezorf@gmail.com");
-		us.salvaUtente(u);
+		us.salvaUtente(
+				us.creaUtente("Ajeje", "Ajeje Brazorf", "ajezorf@gmail.com")
+				);
 	
 		// ------------------------------------------------creazione & salvataggio postazione
-		Postazione p = config.newPostazione();
-		Edificio ed = es.getById(1).get();
-		p.setDescrizione("Stanza uno");
-		p.setTipo(TipologiaPostazione.PRIVATO);
-		p.setNumerooccupantimax(3);
-		p.setEdificio(ed);
-		ed.getPostazioni().add(p);
-		ps.salvaPostazione(p);
+		Edificio ed = es.getById(1);
+		ps.salvaPostazione(
+				ps.creaPostazione("Stanza uno", TipologiaPostazione.PRIVATO, 3, ed)
+				);
+		
+		
 		
 	}
     

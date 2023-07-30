@@ -1,4 +1,4 @@
-package gestionePrenotazioni.dao;
+package gestionePrenotazioni.repository;
 
 import java.util.List;
 

@@ -12,16 +12,24 @@ import gestionePrenotazioni.entities.Utente;
 @Configuration
 @PropertySource("classpath:application.properties")
 public class GestionaleConfiguration {
-
-	@Bean
-	public Edificio newEdificio() {return new Edificio();}
 	
 	@Bean
-	public Utente newUtente() {return new Utente();}
+	public Edificio nuovoEdificio() {
+		return new Edificio();
+	}
 	
 	@Bean
-	public Postazione newPostazione() {return new Postazione();}
+	public Utente nuovoUtente() {
+		return new Utente();
+	}
 	
 	@Bean
-	public Prenotazione newPrenotazione() {return new Prenotazione();}
+	public Postazione nuovaPostazione() {
+		return new Postazione();
+	}
+	
+	@Bean
+	public Prenotazione newPrenotazione() {
+		return new Prenotazione();
+	}
 }
