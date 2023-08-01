@@ -15,7 +15,7 @@ public class Postazione {
 	private int id_postazione;
 	private String descrizione;
 	private TipologiaPostazione tipo;
-	private int numerooccupantimax;
+	private int numeroOccupantiMax;
 	private String city;
 	
 }
