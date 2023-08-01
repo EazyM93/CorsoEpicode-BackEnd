@@ -15,7 +15,6 @@ public class Prenotazione {
 
 	private int id_prenotazione;
 	private LocalDate dataPrenotazione;
-	private LocalDate dataFineSoggiorno;
 	private Utente utente;
 	private Postazione postazione;
 	
