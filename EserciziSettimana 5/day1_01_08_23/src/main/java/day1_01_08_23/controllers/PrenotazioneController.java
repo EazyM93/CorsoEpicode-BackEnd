@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import day1_01_08_23.entities.Prenotazione;
-import day1_01_08_23.entities.Utente;
 import day1_01_08_23.payloads.NewPostazioneBody;
 import day1_01_08_23.services.PrenotazioneService;
 
@@ -31,8 +30,8 @@ public class PrenotazioneController {
 	}
 	
 	// ---------------------------------------------------------GET loclahost/prenotazioni
-		@GetMapping("")
-		public List<Prenotazione> visualizzaPrenotazioni(){
-			return ps.getPrenotazioni();
-		}
+	@GetMapping("")
+	public List<Prenotazione> visualizzaPrenotazioni(){
+		return ps.getPrenotazioni();
+	}
 }

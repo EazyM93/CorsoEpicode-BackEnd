@@ -38,8 +38,8 @@ public class PrenotazioneService {
 	}
 	
 	// ----------------------------------------------------ritorna lista di prenotazioni
-		public List<Prenotazione> getPrenotazioni(){
-			return this.prenotazioni;
-		}
+	public List<Prenotazione> getPrenotazioni(){
+		return this.prenotazioni;
+	}
 	
 }
