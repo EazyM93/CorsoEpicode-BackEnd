@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Utente {
 
-	private int id_user;
+	private int id_utente;
 	private String username;
 	private String nomeCompleto;
 	private String email;
