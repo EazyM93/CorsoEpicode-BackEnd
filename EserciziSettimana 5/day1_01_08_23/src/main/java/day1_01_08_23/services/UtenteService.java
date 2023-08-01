@@ -31,11 +31,9 @@ public class UtenteService {
 	public Optional<Utente> findById(int id) {
 		Utente u = null;
 
-		for (Utente utenteCorrente : utenti) {
-			if (utenteCorrente.getId_utente() == id)
-				u = utenteCorrente;
-		}
-
+		for (Utente utenteCorrente : utenti)
+			if (utenteCorrente.getId_utente() == id) u = utenteCorrente;
+		
 		return Optional.ofNullable(u);
 	}
 	
@@ -53,7 +51,7 @@ public class UtenteService {
 	public Optional<Utente> findByIdAndUpdate(int id, Utente u) {
 		Utente found = null;
 
-		for (Utente utenteCorrente : utenti) {
+		for (Utente utenteCorrente : utenti) 
 			if (utenteCorrente.getId_utente() == id) {
 				found = utenteCorrente;
 				found.setUsername(u.getUsername());
@@ -61,7 +59,6 @@ public class UtenteService {
 				found.setEmail(u.getEmail());
 				found.setId_utente(id);
 			}
-		}
 		
 		return Optional.ofNullable(found);
 

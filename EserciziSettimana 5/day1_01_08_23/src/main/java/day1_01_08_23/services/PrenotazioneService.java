@@ -2,6 +2,8 @@ package day1_01_08_23.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,26 @@ public class PrenotazioneService {
 	// ----------------------------------------------------ritorna lista di prenotazioni
 	public List<Prenotazione> getPrenotazioni(){
 		return this.prenotazioni;
+	}
+	
+	// ----------------------------------------------------cerca utente per id
+	public Optional<Prenotazione> findById(int id) {
+		Prenotazione p = null;
+
+		for (Prenotazione prenotazioneCorrente : prenotazioni) 
+			if (prenotazioneCorrente.getId_prenotazione() == id) p = prenotazioneCorrente;
+
+		return Optional.ofNullable(p);
+	}
+		
+	// ----------------------------------------------------elimina utente tramite id
+	public void findByIdAndDelete(int id) {
+		ListIterator<Prenotazione> iterator = this.prenotazioni.listIterator();
+
+		while (iterator.hasNext()) {
+			Prenotazione prenotazioneCorrente = iterator.next();
+			if (prenotazioneCorrente.getId_prenotazione() == id) iterator.remove();
+		}
 	}
 	
 }

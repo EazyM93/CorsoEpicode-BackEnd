@@ -31,10 +31,8 @@ private List<Postazione> postazioni = new ArrayList<>();
 	public Optional<Postazione> findById(int id) {
 		Postazione u = null;
 
-		for (Postazione postazioneCorrente : postazioni) {
-			if (postazioneCorrente.getId_postazione() == id)
-				u = postazioneCorrente;
-		}
+		for (Postazione postazioneCorrente : postazioni)
+			if (postazioneCorrente.getId_postazione() == id) u = postazioneCorrente;
 
 		return Optional.ofNullable(u);
 	}
@@ -53,7 +51,7 @@ private List<Postazione> postazioni = new ArrayList<>();
 	public Optional<Postazione> findByIdAndUpdate(int id, Postazione p) {
 		Postazione found = null;
 
-		for (Postazione postazioneCorrente : postazioni) {
+		for (Postazione postazioneCorrente : postazioni)
 			if (postazioneCorrente.getId_postazione() == id) {
 				found = postazioneCorrente;
 				found.setDescrizione(p.getDescrizione());
@@ -62,7 +60,6 @@ private List<Postazione> postazioni = new ArrayList<>();
 				found.setCity(p.getCity());
 				found.setId_postazione(id);
 			}
-		}
 		
 		return Optional.ofNullable(found);
 
