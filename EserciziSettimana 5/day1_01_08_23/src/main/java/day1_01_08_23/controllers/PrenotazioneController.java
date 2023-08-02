@@ -26,22 +26,34 @@ public class PrenotazioneController {
 
 	@Autowired
 	PrenotazioneService ps;
+
 	
 	// ---------------------------------------------------------POST loclahost/prenotazioni (+request body)
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Prenotazione salvaPrenotazione(@RequestBody NewPostazioneBody newBody) throws Exception {
 		
-		boolean dataOccupata = false;
 		LocalDate dataCorrente = newBody.getDate();
+		int postazioneCorrente = newBody.getId_postazione();
+		int utenteCorrente = newBody.getId_utente();
 		
-		for(Prenotazione p: ps.getPrenotazioni())
-			if(p.getDataPrenotazione().equals(dataCorrente)) {
-				dataOccupata = true;
+		for(Prenotazione p: ps.getPrenotazioni()) {
+			
+			//------------------------------------------------check postazione data occupata 
+			if(p.getPostazione().getId_postazione() == postazioneCorrente
+					&& p.getDataPrenotazione().equals(dataCorrente)) {
 				throw new Exception("La postazione è già occupata in questa data");
 			} 
-		
-		return (dataOccupata) ? null : ps.save(newBody);
+			
+			//------------------------------------------------check utente con più prenotazioni nello stesso giorno
+			if(p.getUtente().getId_utente() == utenteCorrente
+					&& p.getDataPrenotazione().equals(dataCorrente)) {
+				throw new Exception("L'utente ha già prenotato una postazione in questa data");
+			}
+			
+		}
+			
+		return ps.save(newBody);
 	}
 	
 	// ---------------------------------------------------------GET loclahost/prenotazioni
@@ -58,7 +70,7 @@ public class PrenotazioneController {
 	}
 	
 	// ---------------------------------------------------------GET loclahost/prenotazioni (+ request param)
-	@GetMapping("")
+	@GetMapping("/filtra")
 	public List<Prenotazione> visualizzaByTipoAndCity(@RequestParam TipologiaPostazione tipo,	@RequestParam String city){
 		return ps.findByTipoAndCity(tipo, city);
 	}

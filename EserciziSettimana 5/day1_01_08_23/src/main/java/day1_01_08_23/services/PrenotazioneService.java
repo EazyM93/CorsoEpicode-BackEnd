@@ -66,12 +66,12 @@ public class PrenotazioneService {
 	}
 	
 	// ----------------------------------------------------ritorna lista di prenotazioni filtrata per tipo e città
-	public List<Prenotazione> findByTipoAndCity(TipologiaPostazione type, String city){
+	public List<Prenotazione> findByTipoAndCity(TipologiaPostazione tipo, String city){
 		List<Prenotazione> p = new ArrayList<>();
 		
 		for(Prenotazione prenotazione: prenotazioni) {
-			if(prenotazione.getPostazione().getTipo() == type &&
-					prenotazione.getPostazione().getCity() == city)
+			if(prenotazione.getPostazione().getTipo().equals(tipo) &&
+					prenotazione.getPostazione().getCity().equals(city))
 				p.add(prenotazione);
 		}
 		
