@@ -1,5 +1,6 @@
 package day1_01_08_23.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -25,7 +26,31 @@ public class PrenotazioneService {
 	PostazioneService ps;
 	
 	// ----------------------------------------------------salvataggio prenotazione
-	public Prenotazione save(NewPostazioneBody newBody) {
+	public Prenotazione save(NewPostazioneBody newBody) throws Exception {
+		
+		LocalDate dataCorrente = newBody.getDate();
+		int postazioneCorrente = newBody.getId_postazione();
+		int utenteCorrente = newBody.getId_utente();
+		
+		for(Prenotazione p: getPrenotazioni()) {
+			
+			//------------------------------------------------check postazione data occupata 
+			if(p.getPostazione().getId_postazione() == postazioneCorrente
+					&& p.getDataPrenotazione().equals(dataCorrente)) {
+				throw new Exception("La postazione è già occupata in questa data");
+			} 
+			
+			//------------------------------------------------check utente con più prenotazioni nello stesso giorno
+			if(p.getUtente().getId_utente() == utenteCorrente
+					&& p.getDataPrenotazione().equals(dataCorrente)) {
+				throw new Exception("L'utente ha già prenotato una postazione in questa data");
+			}
+			
+			//------------------------------------------------check data di prenotazione entro due giorni prima
+			if(LocalDate.now().isBefore(dataCorrente.minusDays(2))) {
+				throw new Exception("Troppo tardi per prenotare");
+			}
+		}
 		
 		// costruzione prenotazione dal body
 		Prenotazione p = Prenotazione.builder()

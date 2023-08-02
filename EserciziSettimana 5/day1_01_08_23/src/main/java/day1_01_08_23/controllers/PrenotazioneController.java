@@ -1,6 +1,5 @@
 package day1_01_08_23.controllers;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,28 +30,7 @@ public class PrenotazioneController {
 	// ---------------------------------------------------------POST loclahost/prenotazioni (+request body)
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Prenotazione salvaPrenotazione(@RequestBody NewPostazioneBody newBody) throws Exception {
-		
-		LocalDate dataCorrente = newBody.getDate();
-		int postazioneCorrente = newBody.getId_postazione();
-		int utenteCorrente = newBody.getId_utente();
-		
-		for(Prenotazione p: ps.getPrenotazioni()) {
-			
-			//------------------------------------------------check postazione data occupata 
-			if(p.getPostazione().getId_postazione() == postazioneCorrente
-					&& p.getDataPrenotazione().equals(dataCorrente)) {
-				throw new Exception("La postazione è già occupata in questa data");
-			} 
-			
-			//------------------------------------------------check utente con più prenotazioni nello stesso giorno
-			if(p.getUtente().getId_utente() == utenteCorrente
-					&& p.getDataPrenotazione().equals(dataCorrente)) {
-				throw new Exception("L'utente ha già prenotato una postazione in questa data");
-			}
-			
-		}
-			
+	public Prenotazione salvaPrenotazione(@RequestBody NewPostazioneBody newBody) throws Exception{			
 		return ps.save(newBody);
 	}
 	
