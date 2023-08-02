@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import day1_01_08_23.entities.Prenotazione;
+import day1_01_08_23.enums.TipologiaPostazione;
 import day1_01_08_23.payloads.NewPostazioneBody;
 
 @Service
@@ -62,6 +63,19 @@ public class PrenotazioneService {
 			Prenotazione prenotazioneCorrente = iterator.next();
 			if (prenotazioneCorrente.getId_prenotazione() == id) iterator.remove();
 		}
+	}
+	
+	// ----------------------------------------------------ritorna lista di prenotazioni filtrata per tipo e città
+	public List<Prenotazione> findByTipoAndCity(TipologiaPostazione type, String city){
+		List<Prenotazione> p = new ArrayList<>();
+		
+		for(Prenotazione prenotazione: prenotazioni) {
+			if(prenotazione.getPostazione().getTipo() == type &&
+					prenotazione.getPostazione().getCity() == city)
+				p.add(prenotazione);
+		}
+		
+		return p;
 	}
 	
 }
