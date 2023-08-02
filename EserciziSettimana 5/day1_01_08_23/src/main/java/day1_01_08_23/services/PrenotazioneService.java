@@ -36,22 +36,20 @@ public class PrenotazioneService {
 			
 			//------------------------------------------------check postazione data occupata 
 			if(p.getPostazione().getId_postazione() == postazioneCorrente
-					&& p.getDataPrenotazione().equals(dataCorrente)) {
+					&& p.getDataPrenotazione().equals(dataCorrente))
 				throw new Exception("La postazione è già occupata in questa data");
-			} 
 			
 			//------------------------------------------------check utente con più prenotazioni nello stesso giorno
 			if(p.getUtente().getId_utente() == utenteCorrente
-					&& p.getDataPrenotazione().equals(dataCorrente)) {
+					&& p.getDataPrenotazione().equals(dataCorrente))
 				throw new Exception("L'utente ha già prenotato una postazione in questa data");
-			}
 			
-			//------------------------------------------------check data di prenotazione entro due giorni prima
-			if(LocalDate.now().isBefore(dataCorrente.minusDays(2))) {
-				throw new Exception("Troppo tardi per prenotare");
-			}
 		}
 		
+		//------------------------------------------------check data di prenotazione entro due giorni prima
+		if(LocalDate.now().isAfter(dataCorrente.minusDays(2))) 
+			throw new Exception("Troppo tardi per prenotare");
+			
 		// costruzione prenotazione dal body
 		Prenotazione p = Prenotazione.builder()
 				.id_prenotazione(Math.abs(new Random().nextInt()))
