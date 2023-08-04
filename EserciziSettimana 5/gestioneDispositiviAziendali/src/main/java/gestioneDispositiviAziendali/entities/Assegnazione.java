@@ -1,5 +1,7 @@
 package gestioneDispositiviAziendali.entities;
 
+import java.util.UUID;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +26,7 @@ public class Assegnazione {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_utente;
+	private UUID id_utente;
 	
 	@JoinColumn(name="id_dispositivo")
 	private Dispositivo dispositivo;
