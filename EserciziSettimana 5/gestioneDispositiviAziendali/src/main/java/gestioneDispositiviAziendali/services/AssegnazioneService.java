@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import gestioneDispositiviAziendali.entities.Assegnazione;
 import gestioneDispositiviAziendali.entities.Dispositivo;
 import gestioneDispositiviAziendali.entities.Utente;
+import gestioneDispositiviAziendali.enums.StatoDispositivo;
 import gestioneDispositiviAziendali.payloads.AssegnazionePayload;
+import gestioneDispositiviAziendali.payloads.ModificaStatoDispositivo;
 import gestioneDispositiviAziendali.repository.AssegnazioneRepository;
 import gestioneDispositiviAziendali.repository.DispositivoRepository;
 import gestioneDispositiviAziendali.repository.UtenteRepository;
@@ -27,11 +29,23 @@ public class AssegnazioneService {
 	@Autowired
 	DispositivoRepository dr;
 	
+	@Autowired
+	DispositivoService ds;
+	
 	// ----------------------------------------------------salvataggio assegnazione
-		public Assegnazione save(AssegnazionePayload assegnazioneBody) {
+		public Assegnazione save(AssegnazionePayload assegnazioneBody) throws Exception {
 			
-			Utente u = ur.findById(assegnazioneBody.getId_utente()).get();
-			Dispositivo d = dr.findById(assegnazioneBody.getId_dispositivo()).get();
+			Utente u = ur.findById(assegnazioneBody.getId_utente())
+					.orElseThrow(() -> new Exception("Utente non trovato"));
+			Dispositivo d = dr.findById(assegnazioneBody.getId_dispositivo())
+					.orElseThrow(() -> new Exception("Dispositivo non trovato"));
+			
+			for(Assegnazione a: getAssegnazioni()) {
+				if(d.getId_dispositivo().equals(a.getDispositivo().getId_dispositivo()))
+					throw new Exception("Dispositivo già assegnato");
+			}
+			
+			d.setStato(StatoDispositivo.ASSEGNATO);
 			
 			Assegnazione assCorrente = Assegnazione.builder()
 					.utente(u)
@@ -60,6 +74,15 @@ public class AssegnazioneService {
 		
 		// ----------------------------------------------------cancellazione assegnazione
 		public void findByIdAndDelete(UUID id) {
+			
+			UUID d = findById(id).get().getDispositivo().getId_dispositivo();
+			
+			ModificaStatoDispositivo ms = ModificaStatoDispositivo.builder()
+					.stato(StatoDispositivo.DISPONIBILE)
+					.build();
+			
+			ds.findByIdAndUpdate(d, ms);
+			
 			ar.deleteById(id);
 		}
 	

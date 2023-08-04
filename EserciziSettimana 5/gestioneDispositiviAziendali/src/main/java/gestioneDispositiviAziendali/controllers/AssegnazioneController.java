@@ -28,7 +28,7 @@ public class AssegnazioneController {
 	// ---------------------------------------------------------POST assegnazione
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Assegnazione salvaAssegnazione(@RequestBody AssegnazionePayload bodyAssegnazione) {
+	public Assegnazione salvaAssegnazione(@RequestBody AssegnazionePayload bodyAssegnazione) throws Exception {
 		return as.save(bodyAssegnazione);
 	}
 		
