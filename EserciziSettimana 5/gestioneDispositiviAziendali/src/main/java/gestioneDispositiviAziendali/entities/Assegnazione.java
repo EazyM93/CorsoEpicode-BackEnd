@@ -26,7 +26,7 @@ public class Assegnazione {
 
 	@Id
 	@GeneratedValue
-	private UUID id_utente;
+	private UUID id_assegnazione;
 	
 	@ManyToOne
 	@JoinColumn
