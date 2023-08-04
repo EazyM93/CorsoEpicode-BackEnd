@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import gestioneDispositiviAziendali.entities.Assegnazione;
 import gestioneDispositiviAziendali.entities.Dispositivo;
+import gestioneDispositiviAziendali.entities.Utente;
 import gestioneDispositiviAziendali.payloads.AssegnazionePayload;
 import gestioneDispositiviAziendali.services.AssegnazioneService;
 
@@ -48,15 +49,15 @@ public class AssegnazioneController {
 	}
 	
 	// ---------------------------------------------------------GET dispositivi assegnati a un utente (id)
-	@GetMapping("/findUser")
+	@GetMapping("/findDispositivi")
 	public List<Dispositivo> trovaDispositiviByUtente(@RequestParam UUID id_utente) throws Exception {
 		return as.findDispositiviById(id_utente);
 	}
 	
 	// ---------------------------------------------------------GET dispositivi assegnati a un utente (id)
 	@GetMapping("/findUser")
-	public List<Dispositivo> trovaUtenteByDispositivo(@RequestParam UUID id_utente) throws Exception {
-		return as.findDispositiviById(id_utente);
+	public Utente trovaUtenteByDispositivo(@RequestParam UUID id_dispositivo) throws Exception {
+		return as.trovaUtenteByDispositivo(id_dispositivo);
 	}
 	
 	// ---------------------------------------------------------DELETE dispositivo/{id}

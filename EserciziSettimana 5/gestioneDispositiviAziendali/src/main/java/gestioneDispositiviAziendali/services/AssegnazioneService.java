@@ -103,4 +103,18 @@ public class AssegnazioneService {
 			
 			return dispositivi;
 		}
+		
+		// ----------------------------------------------------trova utente legato al dispositivos
+		public Utente trovaUtenteByDispositivo(UUID id_dispositivo) throws Exception{
+						
+			Utente utenteCorrente = new Utente();
+			
+			for(Assegnazione a: getAssegnazioni()) {
+				if(a.getDispositivo().getId_dispositivo().equals(id_dispositivo)) {
+					utenteCorrente = a.getUtente();
+				}
+			}
+			
+			return utenteCorrente;
+		}
 }
