@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import gestioneDispositiviAziendali.entities.Assegnazione;
+import gestioneDispositiviAziendali.entities.Dispositivo;
 import gestioneDispositiviAziendali.payloads.AssegnazionePayload;
 import gestioneDispositiviAziendali.services.AssegnazioneService;
 
@@ -43,6 +45,18 @@ public class AssegnazioneController {
 	public Assegnazione trovaId(@PathVariable UUID id_assegnazione) throws Exception {
 		return as.findById(id_assegnazione)
 				.orElseThrow(() -> new Exception("ID Assegnazione non trovato"));
+	}
+	
+	// ---------------------------------------------------------GET dispositivi assegnati a un utente (id)
+	@GetMapping("/findUser")
+	public List<Dispositivo> trovaDispositiviByUtente(@RequestParam UUID id_utente) throws Exception {
+		return as.findDispositiviById(id_utente);
+	}
+	
+	// ---------------------------------------------------------GET dispositivi assegnati a un utente (id)
+	@GetMapping("/findUser")
+	public List<Dispositivo> trovaUtenteByDispositivo(@RequestParam UUID id_utente) throws Exception {
+		return as.findDispositiviById(id_utente);
 	}
 	
 	// ---------------------------------------------------------DELETE dispositivo/{id}

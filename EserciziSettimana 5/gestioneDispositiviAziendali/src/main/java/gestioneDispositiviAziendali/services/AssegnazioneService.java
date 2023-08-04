@@ -1,5 +1,6 @@
 package gestioneDispositiviAziendali.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -86,4 +87,20 @@ public class AssegnazioneService {
 			ar.deleteById(id);
 		}
 	
+		// ----------------------------------------------------trova dispositivi asseganti a un utente
+		public List<Dispositivo> findDispositiviById(UUID id_utente) throws Exception{
+			
+			List<Dispositivo> dispositivi = new ArrayList<Dispositivo>();
+			
+			Utente utenteCorrente = ur.findById(id_utente)
+					.orElseThrow(() -> new Exception("Dispositivo non trovato"));
+			
+			for(Assegnazione a: getAssegnazioni()) {
+				if(a.getUtente().getId_utente().equals(utenteCorrente.getId_utente())) {
+					dispositivi.add(a.getDispositivo());
+				}
+			}
+			
+			return dispositivi;
+		}
 }
