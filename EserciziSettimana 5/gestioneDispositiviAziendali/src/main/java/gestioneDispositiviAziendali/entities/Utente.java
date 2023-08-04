@@ -45,7 +45,4 @@ public class Utente {
 	@Column(nullable = false)
 	private String password;
 	
-	@OneToMany(mappedBy = "utente")
-	private List<Assegnazione> dispositiviAssegnati;
-	
 }
