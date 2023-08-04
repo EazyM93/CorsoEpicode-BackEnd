@@ -1,5 +1,5 @@
 package gestioneDispositiviAziendali.enums;
 
-public enum StatoDIspositivo {
+public enum StatoDispositivo {
 	DISPONIBILE, ASSEGNATO, MANUTENZIONE, DISMESSO
 }

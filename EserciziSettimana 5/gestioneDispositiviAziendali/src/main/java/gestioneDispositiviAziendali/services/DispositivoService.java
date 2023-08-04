@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import gestioneDispositiviAziendali.entities.Dispositivo;
+import gestioneDispositiviAziendali.payloads.ModificaStatoDispositivo;
 import gestioneDispositiviAziendali.repository.DispositivoRepository;
 
 @Service
@@ -16,19 +17,20 @@ public class DispositivoService {
 	@Autowired
 	DispositivoRepository dr;
 	
-	// ----------------------------------------------------salvataggio utente
+	// ----------------------------------------------------salvataggio dispositivo
 	public Dispositivo save(Dispositivo dispositivo) {
 		dr.save(dispositivo);
 		return dispositivo;
 	}
 		
-	// ----------------------------------------------------fetch di tutti gli utenti
+	// ----------------------------------------------------fetch di tutti i dispositivi
 	public List<Dispositivo> getDispositivi(){
 		return dr.findAll();
 	}
 		
-	// ----------------------------------------------------fetch utente per id
+	// ----------------------------------------------------fetch dispositivo per id
 	public Optional<Dispositivo> findById(UUID id) {
+		
 		Dispositivo dispositivoTrovato = null;
 			
 		for(Dispositivo d: getDispositivi())
@@ -36,9 +38,26 @@ public class DispositivoService {
 				dispositivoTrovato = d;
 			
 		return Optional.ofNullable(dispositivoTrovato);
-	 }
 		
-	// ----------------------------------------------------cancellazione utente
+	 }
+	
+	// ----------------------------------------------------modifica stato dispositivo
+	public Optional<Dispositivo> findByIdAndUpdate(UUID id, ModificaStatoDispositivo stato){
+		
+		Dispositivo dispositivoTrovato = null;
+		
+		for(Dispositivo d: getDispositivi())
+			if(d.getId_dispositivo().equals(id))
+				dispositivoTrovato = d;
+		
+		dispositivoTrovato.setStato(stato.getStato());
+		
+		dr.save(dispositivoTrovato);
+		
+		return Optional.ofNullable(dispositivoTrovato);
+		
+	}
+	// ----------------------------------------------------cancellazione dispositivo
 	public void findByIdAndDelete(UUID id) {
 		dr.deleteById(id);
 	}

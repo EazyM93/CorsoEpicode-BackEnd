@@ -2,7 +2,7 @@ package gestioneDispositiviAziendali.entities;
 
 import java.util.UUID;
 
-import gestioneDispositiviAziendali.enums.StatoDIspositivo;
+import gestioneDispositiviAziendali.enums.StatoDispositivo;
 import gestioneDispositiviAziendali.enums.TipologiaDispositivo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,6 +37,6 @@ public class Dispositivo {
 
 	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
-	private StatoDIspositivo stato;
+	private StatoDispositivo stato;
 	
 }
