@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,10 +29,12 @@ public class Assegnazione {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private UUID id_utente;
 	
-	@JoinColumn(name="id_dispositivo")
+	@ManyToOne
+	@JoinColumn
 	private Dispositivo dispositivo;
 	
-	@JoinColumn(name="id_utente")
+	@ManyToOne
+	@JoinColumn
 	private Utente utente;
 	
 }
