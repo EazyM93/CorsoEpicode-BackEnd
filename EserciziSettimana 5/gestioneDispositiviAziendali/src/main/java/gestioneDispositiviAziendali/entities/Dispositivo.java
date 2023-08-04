@@ -32,11 +32,11 @@ public class Dispositivo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private UUID id_dispositivo;
 	
-	@Column(nullable=false, name="tipo")
+	@Column(nullable=false)
 	@Enumerated(EnumType.STRING)
 	private TipologiaDispositivo tipo;
 
-	@Column(nullable = false, name = "stato")
+	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private StatoDIspositivo stato;
 	
