@@ -1,5 +1,7 @@
 package gestioneDispositiviAziendali.entities;
 
+import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -26,7 +28,7 @@ public class Dispositivo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_dispositivo;
+	private UUID id_dispositivo;
 	
 	@Column(nullable=false, name="tipo")
 	@Enumerated(EnumType.STRING)
