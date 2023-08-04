@@ -1,7 +1,6 @@
 package gestioneDispositiviAziendali.services;
 
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -41,12 +40,7 @@ public class UtenteService {
 	
 	// ----------------------------------------------------cancellazione utente
 	public void findByIdAndDelete(UUID id) {
-		ListIterator<Utente> iterator = getUtenti().listIterator();
-
-		while (iterator.hasNext()) {
-			Utente utenteCorrente = iterator.next();
-			if (utenteCorrente.getId_utente().equals(id)) iterator.remove();
-		}
+		ur.deleteById(id);
 	}
 	
 }
