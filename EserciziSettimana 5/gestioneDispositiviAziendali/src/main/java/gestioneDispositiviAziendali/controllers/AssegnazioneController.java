@@ -54,7 +54,7 @@ public class AssegnazioneController {
 		return as.findDispositiviById(id_utente);
 	}
 	
-	// ---------------------------------------------------------GET dispositivi assegnati a un utente (id)
+	// ---------------------------------------------------------GET utente assegnato a un dispositivo (id)
 	@GetMapping("/findUser")
 	public Utente trovaUtenteByDispositivo(@RequestParam UUID id_dispositivo) throws Exception {
 		return as.trovaUtenteByDispositivo(id_dispositivo);
