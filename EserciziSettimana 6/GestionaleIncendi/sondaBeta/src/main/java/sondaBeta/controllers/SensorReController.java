@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.AllArgsConstructor;
-import sondaAlpha.entities.SensorRe;
-import sondaAlpha.utils.EventQueue;
+import sondaBeta.entities.SensorRe;
 
 @RestController
 @RequestMapping("/sensors")
