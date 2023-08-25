@@ -1,6 +1,5 @@
 package sedeInstallazione.controllers;
 
-import java.awt.EventQueue;
 import java.util.List;
 
 import org.springframework.http.HttpEntity;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import sedeInstallazione.entities.SensorRe;
+import sedeInstallazione.utils.EventQueue;
 
 @RestController
 @RequestMapping("/control-process")
