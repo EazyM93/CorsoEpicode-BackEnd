@@ -4,7 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
-import sondaAlpha.entities.SensorRe;
+import sondaBeta.entities.SensorRe;
+
+
 
 @Configuration
 public class SensorConfig {
