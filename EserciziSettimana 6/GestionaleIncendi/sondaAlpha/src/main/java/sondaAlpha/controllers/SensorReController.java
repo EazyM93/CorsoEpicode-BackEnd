@@ -15,21 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import lombok.AllArgsConstructor;
 import sondaAlpha.entities.SensorRe;
 import sondaAlpha.utils.EventQueue;
 
 @RestController
 @RequestMapping("/sensors")
+@AllArgsConstructor
 public class SensorReController {
 	
 	private EventQueue eventQueue; 
 
     private RestTemplate restTemplate;
-
-    public FireSensorController(EventQueue eventQueue, RestTemplate restTemplate) {
-        this.eventQueue = eventQueue;
-        this.restTemplate = restTemplate;
-    }
 
     @GetMapping("/{sensorId}")
     public ResponseEntity<List<SensorRe>> getFireReadings(
